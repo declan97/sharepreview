@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   authors: [{ name: "SharePreview" }],
   creator: "SharePreview",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app"),
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",

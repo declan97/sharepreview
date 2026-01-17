@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { PlatformLandingPage } from "@/components/platform-landing";
 
 export const metadata: Metadata = {
-  title: "LinkedIn Post Preview - Check Your LinkedIn Link Previews",
+  title: "LinkedIn Post Preview Checker - Free LinkedIn Link Tester | SharePreview",
   description:
-    "See how your links will appear when shared on LinkedIn. Test your Open Graph images, titles, and descriptions before posting.",
+    "Check how your links will appear when shared on LinkedIn. Free LinkedIn preview checker tests your Open Graph images, titles, and descriptions before posting.",
   keywords: [
     "linkedin post preview",
     "linkedin link preview",
     "linkedin preview checker",
+    "linkedin post inspector",
     "linkedin og image",
     "linkedin share preview",
     "linkedin meta tags",
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "LinkedIn Post Preview Checker",
     description:
-      "See how your links will appear when shared on LinkedIn. Test before you post.",
+      "Check how your links will appear when shared on LinkedIn. Free preview checker for professionals.",
     url: "https://sharepreview.com/linkedin-preview",
   },
 };
@@ -35,6 +36,26 @@ export default function LinkedInPreviewPage() {
         "Test description preview",
         "Ensure professional appearance",
       ]}
+      whyMatters={{
+        headline: "Why LinkedIn previews matter for professionals",
+        points: [
+          {
+            stat: "98%",
+            description:
+              "of B2B marketers use LinkedIn for content marketing",
+          },
+          {
+            stat: "3x",
+            description:
+              "higher engagement on posts with professional preview images",
+          },
+          {
+            stat: "First",
+            description:
+              "Your link preview is often your first impression with prospects",
+          },
+        ],
+      }}
       faq={[
         {
           question: "What image size does LinkedIn use for link previews?",
@@ -55,6 +76,13 @@ export default function LinkedInPreviewPage() {
           question: "How do I make my LinkedIn preview look professional?",
           answer:
             "Use a high-quality image at 1200x627 pixels, keep your title concise and compelling, and write a clear description. Avoid clickbait and ensure your branding is consistent.",
+        },
+      ]}
+      relatedLinks={[
+        {
+          href: "/guides/og-image-size",
+          title: "OG Image Size Guide",
+          description: "Complete guide to Open Graph image sizes for all platforms.",
         },
       ]}
     />

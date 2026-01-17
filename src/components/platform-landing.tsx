@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import Link from "next/link";
 import { UrlInput } from "./url-input";
 import { PreviewCard } from "./preview-card";
 import { ProblemList } from "./problem-list";
 import { getPlatformSpec, getAllPlatforms } from "@/lib/platform-specs";
 import { type MetaData, type ValidationIssue } from "@/lib/validators";
-import { Check } from "lucide-react";
+import { Check, TrendingUp, ArrowRight } from "lucide-react";
+import Script from "next/script";
 
 interface CheckResult {
   success: boolean;
@@ -21,6 +23,17 @@ interface FaqItem {
   answer: string;
 }
 
+interface WhyMattersItem {
+  stat: string;
+  description: string;
+}
+
+interface RelatedLink {
+  href: string;
+  title: string;
+  description: string;
+}
+
 interface PlatformLandingPageProps {
   platform: string;
   title: string;
@@ -28,6 +41,11 @@ interface PlatformLandingPageProps {
   description: string;
   features: string[];
   faq: FaqItem[];
+  whyMatters?: {
+    headline: string;
+    points: WhyMattersItem[];
+  };
+  relatedLinks?: RelatedLink[];
 }
 
 export function PlatformLandingPage({
@@ -37,11 +55,46 @@ export function PlatformLandingPage({
   description,
   features,
   faq,
+  whyMatters,
+  relatedLinks,
 }: PlatformLandingPageProps) {
   const [result, setResult] = useState<CheckResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const platformSpec = getPlatformSpec(platform);
   const allPlatforms = getAllPlatforms();
+
+  // Generate combined schema for SEO (FAQPage + SoftwareApplication)
+  const combinedSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          name: title,
+          description: description,
+          applicationCategory: "DeveloperApplication",
+          operatingSystem: "Web",
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+          },
+        },
+        {
+          "@type": "FAQPage",
+          mainEntity: faq.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        },
+      ],
+    }),
+    [title, description, faq]
+  );
 
   const handleCheck = async (url: string) => {
     setIsLoading(true);
@@ -67,7 +120,14 @@ export function PlatformLandingPage({
   };
 
   return (
-    <div className="flex flex-col">
+    <>
+      {/* Combined Schema for SEO (SoftwareApplication + FAQPage) */}
+      <Script
+        id="combined-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
+      />
+      <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b bg-gradient-to-b from-primary/5 to-background px-4 py-20">
         <div className="container mx-auto max-w-5xl text-center">
@@ -136,6 +196,30 @@ export function PlatformLandingPage({
                 </p>
               </div>
             )}
+          </div>
+        </section>
+      )}
+
+      {/* Why This Matters Section */}
+      {!result && whyMatters && (
+        <section className="border-b bg-amber-50 px-4 py-12 dark:bg-amber-950/20">
+          <div className="container mx-auto max-w-4xl">
+            <div className="flex items-center justify-center gap-2 text-amber-700 dark:text-amber-400">
+              <TrendingUp className="h-5 w-5" />
+              <h2 className="text-xl font-bold">{whyMatters.headline}</h2>
+            </div>
+            <div className="mt-8 grid gap-6 md:grid-cols-3">
+              {whyMatters.points.map((point, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-3xl font-bold text-amber-700 dark:text-amber-400">
+                    {point.stat}
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {point.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
@@ -223,6 +307,66 @@ export function PlatformLandingPage({
           </div>
         </section>
       )}
-    </div>
+
+      {/* Related Resources Section */}
+      {!result && relatedLinks && relatedLinks.length > 0 && (
+        <section className="border-t bg-muted/30 px-4 py-16">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="mb-8 text-center text-2xl font-bold">
+              Related Resources
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {relatedLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="group rounded-xl border bg-card p-5 transition-colors hover:border-primary/50 hover:bg-primary/5"
+                >
+                  <h3 className="font-semibold group-hover:text-primary">
+                    {link.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {link.description}
+                  </p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-sm text-primary">
+                    Learn more <ArrowRight className="h-3 w-3" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Other Platforms Section */}
+      {!result && (
+        <section className="border-t px-4 py-16">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="mb-8 text-center text-2xl font-bold">
+              Check Other Platforms
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {allPlatforms
+                .filter((p) => p.id !== platform)
+                .map((p) => (
+                  <Link
+                    key={p.id}
+                    href={`/${p.id}-preview`}
+                    className="group rounded-xl border bg-card p-4 text-center transition-colors hover:border-primary/50 hover:bg-primary/5"
+                  >
+                    <span className="font-medium group-hover:text-primary">
+                      {p.name}
+                    </span>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Preview Checker
+                    </p>
+                  </Link>
+                ))}
+            </div>
+          </div>
+        </section>
+      )}
+      </div>
+    </>
   );
 }

@@ -1,19 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { Check } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Pricing",
-  description: "Choose the right plan for your link preview needs. Start free, upgrade when you need more.",
+  description:
+    "Choose the right plan for your link preview needs. Start free, upgrade when you need more.",
 };
 
 const plans = [
   {
     name: "Free",
     price: "$0",
-    description: "Perfect for occasional use",
+    tagline: "Try it out",
+    description: "Check up to 5 links per day. No signup required.",
     features: [
       "5 checks per day",
       "All platform previews",
@@ -30,7 +38,8 @@ const plans = [
     name: "Pro",
     price: "$9",
     period: "/month",
-    description: "For content creators & bloggers",
+    tagline: "Never worry again",
+    description: "Unlimited checks. Check every link before you share.",
     badge: "Launch pricing",
     features: [
       "Unlimited checks",
@@ -41,6 +50,8 @@ const plans = [
       "Check history (30 days)",
       "Priority support",
     ],
+    whyUpgrade:
+      "If you publish content more than once a week, you'll hit the free limit. Pro removes the friction so you can check every link, every time.",
     cta: "Join Waitlist",
     href: "#waitlist",
     popular: true,
@@ -50,7 +61,8 @@ const plans = [
     name: "Business",
     price: "$29",
     period: "/month",
-    description: "For teams & agencies",
+    tagline: "Scale your workflow",
+    description: "Bulk checking, team access, and automation.",
     features: [
       "Everything in Pro",
       "Bulk URL checking (50 at once)",
@@ -60,6 +72,8 @@ const plans = [
       "Monitoring & alerts",
       "90-day history",
     ],
+    whyUpgrade:
+      "Perfect for agencies and teams who manage multiple brands. Check entire campaigns at once and share reports with clients.",
     cta: "Join Waitlist",
     href: "#waitlist",
     popular: false,
@@ -69,7 +83,8 @@ const plans = [
     name: "API",
     price: "$49",
     period: "/month",
-    description: "For developers & SaaS",
+    tagline: "Build with SharePreview",
+    description: "Integrate link checking into your own tools.",
     features: [
       "2,000 API checks/month",
       "$0.01 per additional check",
@@ -79,6 +94,8 @@ const plans = [
       "Dedicated support",
       "SLA guarantee",
     ],
+    whyUpgrade:
+      "Automate link preview validation in your CI/CD pipeline, CMS, or marketing tools. Catch issues before they go live.",
     cta: "Join Waitlist",
     href: "#waitlist",
     popular: false,
@@ -89,15 +106,16 @@ const plans = [
 export default function PricingPage() {
   return (
     <div className="flex flex-col">
-      {/* Hero */}
+      {/* Value Proposition Header */}
       <section className="border-b bg-gradient-to-b from-primary/5 to-background px-4 py-20">
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            Simple, transparent pricing
+            Stop sharing broken links
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            Start free and upgrade when you need more. All plans include a 14-day
-            free trial.
+            Most people don&apos;t know their link previews are broken until
+            someone tells them. With SharePreview, you&apos;ll catch problems
+            before your audience does.
           </p>
         </div>
       </section>
@@ -129,7 +147,12 @@ export default function PricingPage() {
                 )}
                 <CardHeader>
                   <CardTitle>{plan.name}</CardTitle>
-                  <CardDescription>{plan.description}</CardDescription>
+                  <CardDescription className="font-medium text-foreground">
+                    {plan.tagline}
+                  </CardDescription>
+                  <p className="text-sm text-muted-foreground">
+                    {plan.description}
+                  </p>
                   <div className="mt-4">
                     <span className="text-4xl font-bold">{plan.price}</span>
                     {plan.period && (
@@ -148,6 +171,18 @@ export default function PricingPage() {
                       </li>
                     ))}
                   </ul>
+
+                  {"whyUpgrade" in plan && plan.whyUpgrade && (
+                    <div className="mt-4 rounded-lg bg-primary/5 p-3">
+                      <p className="text-xs text-muted-foreground">
+                        <span className="font-semibold text-foreground">
+                          Why upgrade?
+                        </span>{" "}
+                        {plan.whyUpgrade}
+                      </p>
+                    </div>
+                  )}
+
                   {plan.comingSoon ? (
                     <a href={plan.href} className="mt-6 block">
                       <Button
@@ -174,8 +209,37 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Comparison Section */}
+      <section className="border-t bg-muted/30 px-4 py-16">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="mb-8 text-center text-2xl font-bold">
+            How do you know if you need Pro?
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-xl border bg-card p-6">
+              <h3 className="font-semibold">Free is perfect if you...</h3>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                <li>• Share links a few times a week</li>
+                <li>• Only need to check occasionally</li>
+                <li>• Don&apos;t need saved history</li>
+                <li>• Use default OG image templates</li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-primary bg-card p-6">
+              <h3 className="font-semibold">Upgrade to Pro if you...</h3>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                <li>• Publish content daily or multiple times per week</li>
+                <li>• Want to check every link before sharing</li>
+                <li>• Need to track what you&apos;ve checked</li>
+                <li>• Want branded OG images with your logo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section className="border-t bg-muted/30 px-4 py-20">
+      <section className="border-t px-4 py-20">
         <div className="container mx-auto max-w-3xl">
           <h2 className="mb-12 text-center text-3xl font-bold">
             Frequently Asked Questions
@@ -210,9 +274,14 @@ export default function PricingPage() {
         <div className="container mx-auto max-w-xl text-center">
           <h2 className="text-2xl font-bold">Get Early Access to Pro</h2>
           <p className="mt-4 text-muted-foreground">
-            Join the waitlist and get 20% off when we launch paid plans. Be the first to unlock unlimited checks, advanced templates, and more.
+            Join the waitlist and get 20% off when we launch paid plans. Be the
+            first to unlock unlimited checks, advanced templates, and more.
           </p>
-          <form className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="/api/waitlist" method="POST">
+          <form
+            className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
+            action="/api/waitlist"
+            method="POST"
+          >
             <input
               type="email"
               name="email"

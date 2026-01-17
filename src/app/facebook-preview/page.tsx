@@ -35,6 +35,24 @@ export default function FacebookPreviewPage() {
         "Test description preview (65 characters shown)",
         "Get copy-paste meta tag fixes",
       ]}
+      whyMatters={{
+        headline: "Why Facebook previews matter",
+        points: [
+          {
+            stat: "2x",
+            description: "Posts with optimized previews get 2x more engagement",
+          },
+          {
+            stat: "85%",
+            description: "of users scroll past posts with missing images",
+          },
+          {
+            stat: "#1",
+            description:
+              "The preview is often the ONLY thing people see before clicking",
+          },
+        ],
+      }}
       faq={[
         {
           question: "Why isn't my Facebook preview showing an image?",
@@ -55,6 +73,18 @@ export default function FacebookPreviewPage() {
           question: "What size should my Facebook preview image be?",
           answer:
             "The recommended size is 1200x630 pixels (1.91:1 aspect ratio). Minimum size is 600x315 pixels. Images smaller than this may not display properly.",
+        },
+      ]}
+      relatedLinks={[
+        {
+          href: "/fix/facebook-preview-not-showing",
+          title: "Fix Facebook Preview Issues",
+          description: "Troubleshoot why your Facebook preview isn't showing correctly.",
+        },
+        {
+          href: "/guides/og-image-size",
+          title: "OG Image Size Guide",
+          description: "Learn the optimal image sizes for all social platforms.",
         },
       ]}
     />
