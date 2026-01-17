@@ -1,7 +1,14 @@
 /* eslint-disable */
 /**
- * Generated API types - run `npx convex dev` to regenerate
+ * Generated `api` utility.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
  */
+
+import type * as waitlist from "../waitlist.js";
 
 import type {
   ApiFromModules,
@@ -9,12 +16,34 @@ import type {
   FunctionReference,
 } from "convex/server";
 
-// Stub types until Convex is configured
 declare const fullApi: ApiFromModules<{
-  waitlist: typeof import("../waitlist");
+  waitlist: typeof waitlist;
 }>;
 
-export type Mounts = Record<string, never>;
+/**
+ * A utility for referencing Convex functions in your app's public API.
+ *
+ * Usage:
+ * ```js
+ * const myFunctionReference = api.myModule.myFunction;
+ * ```
+ */
+export declare const api: FilterApi<
+  typeof fullApi,
+  FunctionReference<any, "public">
+>;
 
-export declare const api: FilterApi<typeof fullApi, FunctionReference<any, "public">>;
-export declare const internal: FilterApi<typeof fullApi, FunctionReference<any, "internal">>;
+/**
+ * A utility for referencing Convex functions in your app's internal API.
+ *
+ * Usage:
+ * ```js
+ * const myFunctionReference = internal.myModule.myFunction;
+ * ```
+ */
+export declare const internal: FilterApi<
+  typeof fullApi,
+  FunctionReference<any, "internal">
+>;
+
+export declare const components: {};
