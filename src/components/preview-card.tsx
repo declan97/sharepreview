@@ -92,7 +92,7 @@ function FacebookPreview({ title, description, image, siteName, spec }: Platform
     >
       {image ? (
         <div className="aspect-[1.91/1] w-full overflow-hidden bg-gray-200">
-          <img src={image} alt="" className="h-full w-full object-cover" />
+          <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       ) : (
         <div className="flex aspect-[1.91/1] w-full items-center justify-center bg-gray-200">
@@ -123,7 +123,7 @@ function TwitterPreview({ title, description, image, url, spec }: PlatformPrevie
     >
       {image ? (
         <div className="aspect-[1.91/1] w-full overflow-hidden">
-          <img src={image} alt="" className="h-full w-full object-cover" />
+          <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       ) : (
         <div className="flex aspect-[1.91/1] w-full items-center justify-center bg-gray-800">
@@ -157,7 +157,7 @@ function LinkedInPreview({ title, description, image, siteName, spec }: Platform
     >
       {image ? (
         <div className="aspect-[1.91/1] w-full overflow-hidden bg-gray-200">
-          <img src={image} alt="" className="h-full w-full object-cover" />
+          <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       ) : (
         <div className="flex aspect-[1.91/1] w-full items-center justify-center bg-gray-200">
@@ -199,7 +199,7 @@ function DiscordPreview({ title, description, image, siteName, spec }: PlatformP
       </div>
       {image && (
         <div className="m-4 h-20 w-20 shrink-0 overflow-hidden rounded">
-          <img src={image} alt="" className="h-full w-full object-cover" />
+          <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       )}
     </div>
@@ -211,7 +211,7 @@ function GenericPreview({ title, description, image, siteName, spec }: PlatformP
     <div className="overflow-hidden rounded-lg border" style={{ borderColor: spec.colors.border }}>
       {image && (
         <div className="aspect-[1.91/1] w-full overflow-hidden bg-gray-200">
-          <img src={image} alt="" className="h-full w-full object-cover" />
+          <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       )}
       <div className="p-3">

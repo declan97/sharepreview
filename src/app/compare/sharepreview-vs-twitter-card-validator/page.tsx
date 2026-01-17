@@ -22,6 +22,9 @@ export const metadata: Metadata = {
       "Twitter Card Validator was discontinued. Compare with SharePreview, the free alternative.",
     url: "https://sharepreview.com/compare/sharepreview-vs-twitter-card-validator",
   },
+  alternates: {
+    canonical: "https://sharepreview.com/compare/sharepreview-vs-twitter-card-validator",
+  },
 };
 
 const faqSchema = {

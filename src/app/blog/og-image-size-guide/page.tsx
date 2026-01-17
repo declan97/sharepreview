@@ -21,6 +21,9 @@ export const metadata: Metadata = {
       "The complete guide to Open Graph image sizes for Facebook, Twitter, LinkedIn, Discord, and Slack.",
     type: "article",
   },
+  alternates: {
+    canonical: "https://sharepreview.com/blog/og-image-size-guide",
+  },
 };
 
 const jsonLd = {

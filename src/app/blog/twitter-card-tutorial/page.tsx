@@ -21,6 +21,9 @@ export const metadata: Metadata = {
       "Learn how to set up Twitter Cards for perfect link previews on Twitter/X.",
     type: "article",
   },
+  alternates: {
+    canonical: "https://sharepreview.com/blog/twitter-card-tutorial",
+  },
 };
 
 const jsonLd = {

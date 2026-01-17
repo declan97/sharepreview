@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Check how your links will appear when shared on LinkedIn. Free preview checker for professionals.",
     url: "https://sharepreview.com/linkedin-preview",
   },
+  alternates: {
+    canonical: "https://sharepreview.com/linkedin-preview",
+  },
 };
 
 export default function LinkedInPreviewPage() {

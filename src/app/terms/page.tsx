@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "SharePreview terms of service - the rules and guidelines for using our service.",
+  alternates: {
+    canonical: "https://sharepreview.com/terms",
+  },
 };
 
 export default function TermsPage() {

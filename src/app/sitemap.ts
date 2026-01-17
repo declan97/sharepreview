@@ -1,7 +1,49 @@
 import { MetadataRoute } from "next";
+import { getAllFixSlugs } from "@/content/fix/data";
+import { getAllGuideSlugs } from "@/content/guides/data";
+import { getAllComparisonSlugs } from "@/content/comparisons/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.com";
+
+  // Static fix page slugs (have their own static pages)
+  const staticFixSlugs = ["facebook-preview-not-showing", "twitter-card-not-working"];
+
+  // Static guide slugs (have their own static pages)
+  const staticGuideSlugs = ["og-image-size", "twitter-card-size"];
+
+  // Static comparison slugs (have their own static pages)
+  const staticComparisonSlugs = ["sharepreview-vs-twitter-card-validator"];
+
+  // Generate dynamic fix page entries
+  const dynamicFixPages = getAllFixSlugs()
+    .filter((slug) => !staticFixSlugs.includes(slug))
+    .map((slug) => ({
+      url: `${baseUrl}/fix/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    }));
+
+  // Generate dynamic guide page entries
+  const dynamicGuidePages = getAllGuideSlugs()
+    .filter((slug) => !staticGuideSlugs.includes(slug))
+    .map((slug) => ({
+      url: `${baseUrl}/guides/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    }));
+
+  // Generate dynamic comparison page entries
+  const dynamicComparisonPages = getAllComparisonSlugs()
+    .filter((slug) => !staticComparisonSlugs.includes(slug))
+    .map((slug) => ({
+      url: `${baseUrl}/compare/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    }));
 
   return [
     // Main pages
@@ -50,7 +92,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
-    // Guide pages (high-volume SEO targets)
+    // Static guide pages
     {
       url: `${baseUrl}/guides/og-image-size`,
       lastModified: new Date(),
@@ -64,7 +106,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
-    // Comparison pages (commercial intent - high conversion)
+    // Dynamic guide pages
+    ...dynamicGuidePages,
+
+    // Static comparison pages
     {
       url: `${baseUrl}/compare/sharepreview-vs-twitter-card-validator`,
       lastModified: new Date(),
@@ -72,7 +117,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
-    // Fix/Troubleshooting pages (problem-aware searches)
+    // Dynamic comparison pages
+    ...dynamicComparisonPages,
+
+    // Static fix/troubleshooting pages
     {
       url: `${baseUrl}/fix/facebook-preview-not-showing`,
       lastModified: new Date(),
@@ -85,6 +133,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+
+    // Dynamic fix pages
+    ...dynamicFixPages,
 
     // Blog posts (SEO content)
     {

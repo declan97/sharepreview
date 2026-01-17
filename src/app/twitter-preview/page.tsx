@@ -21,6 +21,9 @@ export const metadata: Metadata = {
       "Free Twitter card validator since Twitter removed theirs. Check how your links appear on Twitter/X instantly.",
     url: "https://sharepreview.com/twitter-preview",
   },
+  alternates: {
+    canonical: "https://sharepreview.com/twitter-preview",
+  },
 };
 
 export default function TwitterPreviewPage() {

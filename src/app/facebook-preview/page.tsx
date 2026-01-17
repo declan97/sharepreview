@@ -19,6 +19,9 @@ export const metadata: Metadata = {
       "Check how your links will appear when shared on Facebook. See the preview before you post.",
     url: "https://sharepreview.com/facebook-preview",
   },
+  alternates: {
+    canonical: "https://sharepreview.com/facebook-preview",
+  },
 };
 
 export default function FacebookPreviewPage() {

@@ -74,6 +74,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: false,
         error: result.error || "Failed to fetch URL",
+        errorType: result.errorType,
         fetchTime: result.fetchTime,
       });
     }
@@ -86,6 +87,7 @@ export async function POST(request: NextRequest) {
       data: result.data,
       issues,
       fetchTime: result.fetchTime,
+      originalUrl: normalizedUrl,
     });
   } catch (error) {
     console.error("Check API error:", error);

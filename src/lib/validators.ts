@@ -8,11 +8,19 @@ export interface ValidationIssue {
   suggestion?: string;
 }
 
+export type ImageStatus =
+  | { valid: true; contentType: string }
+  | { valid: false; error: "not_found" | "not_image" | "timeout" | "error"; message: string };
+
 export interface MetaData {
   url: string;
+  originalUrl?: string;  // The URL user entered
+  finalUrl?: string;     // The URL after redirects
+  redirectCount?: number;
   title?: string;
   description?: string;
   image?: string;
+  imageStatus?: ImageStatus;  // Whether the image URL is accessible
   siteName?: string;
   type?: string;
   locale?: string;
@@ -22,12 +30,25 @@ export interface MetaData {
   twitterTitle?: string;
   twitterDescription?: string;
   twitterImage?: string;
+  twitterImageStatus?: ImageStatus;
   imageWidth?: number;
   imageHeight?: number;
+  isJavaScriptRequired?: boolean;  // True if site appears to need JS to render
+  jsRenderingReason?: string;      // Why we think JS is required
 }
 
 export function validateMetaData(meta: MetaData): ValidationIssue[] {
   const issues: ValidationIssue[] = [];
+
+  // JavaScript rendering warning (show first as it affects everything)
+  if (meta.isJavaScriptRequired) {
+    issues.push({
+      type: "warning",
+      message: "This page may require JavaScript to render",
+      field: "javascript",
+      suggestion: meta.jsRenderingReason || "Social platforms cannot execute JavaScript. Meta tags should be in the initial HTML.",
+    });
+  }
 
   // Check required fields
   if (!meta.title) {
@@ -55,10 +76,48 @@ export function validateMetaData(meta: MetaData): ValidationIssue[] {
       field: "image",
       suggestion: "Add an og:image meta tag with a 1200x630 image",
     });
+  } else if (meta.imageStatus && !meta.imageStatus.valid) {
+    // Image tag exists but URL is not accessible
+    const errorMessages: Record<string, { message: string; suggestion: string }> = {
+      not_found: {
+        message: "Preview image URL returns 404 Not Found",
+        suggestion: "The og:image URL points to an image that doesn't exist. Update it to a valid image URL.",
+      },
+      not_image: {
+        message: "Preview image URL is not an image",
+        suggestion: `The og:image URL returns ${meta.imageStatus.message.includes("content type") ? meta.imageStatus.message.split("returns ")[1] : "wrong content type"}. Ensure the URL points directly to an image file.`,
+      },
+      timeout: {
+        message: "Preview image URL timed out",
+        suggestion: "The image server is too slow to respond. Consider hosting the image on a faster CDN.",
+      },
+      error: {
+        message: "Preview image URL is not accessible",
+        suggestion: meta.imageStatus.message || "Could not verify the image URL. Ensure it's publicly accessible.",
+      },
+    };
+
+    const errorInfo = errorMessages[meta.imageStatus.error] || errorMessages.error;
+    issues.push({
+      type: "error",
+      message: errorInfo.message,
+      field: "image",
+      suggestion: errorInfo.suggestion,
+    });
+  }
+
+  // Twitter image validation (if different from og:image)
+  if (meta.twitterImage && meta.twitterImage !== meta.image && meta.twitterImageStatus && !meta.twitterImageStatus.valid) {
+    issues.push({
+      type: "warning",
+      message: "Twitter image URL is not accessible",
+      field: "twitterImage",
+      suggestion: meta.twitterImageStatus.message || "The twitter:image URL could not be verified.",
+    });
   }
 
   // Platform-specific validations
-  for (const [platformId, spec] of Object.entries(platformSpecs)) {
+  for (const [, spec] of Object.entries(platformSpecs)) {
     validateForPlatform(meta, spec, issues);
   }
 

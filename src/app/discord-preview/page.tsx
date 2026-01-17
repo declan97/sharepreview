@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Check how your links will appear when shared on Discord. Free embed preview tester.",
     url: "https://sharepreview.com/discord-preview",
   },
+  alternates: {
+    canonical: "https://sharepreview.com/discord-preview",
+  },
 };
 
 export default function DiscordPreviewPage() {

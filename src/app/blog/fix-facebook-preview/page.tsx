@@ -20,6 +20,9 @@ export const metadata: Metadata = {
       "Complete troubleshooting guide for Facebook link preview problems. Fix missing images and broken previews.",
     type: "article",
   },
+  alternates: {
+    canonical: "https://sharepreview.com/blog/fix-facebook-preview",
+  },
 };
 
 const jsonLd = {

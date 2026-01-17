@@ -3,7 +3,7 @@
 import { type ValidationIssue, getGlobalIssues, getMetaTagCode, type MetaData } from "@/lib/validators";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { AlertCircle, AlertTriangle, Info, Copy, Check, Code } from "lucide-react";
+import { AlertCircle, AlertTriangle, Info, Copy, Check, Code, Zap } from "lucide-react";
 import { useState } from "react";
 
 interface ProblemListProps {
@@ -16,9 +16,13 @@ export function ProblemList({ issues, meta }: ProblemListProps) {
   const [showCode, setShowCode] = useState(false);
   const globalIssues = getGlobalIssues(issues);
 
-  const errors = globalIssues.filter((i) => i.type === "error");
-  const warnings = globalIssues.filter((i) => i.type === "warning");
-  const infos = globalIssues.filter((i) => i.type === "info");
+  // Separate JS warning from other issues (it gets special treatment)
+  const jsWarning = globalIssues.find((i) => i.field === "javascript");
+  const otherIssues = globalIssues.filter((i) => i.field !== "javascript");
+
+  const errors = otherIssues.filter((i) => i.type === "error");
+  const warnings = otherIssues.filter((i) => i.type === "warning");
+  const infos = otherIssues.filter((i) => i.type === "info");
 
   const copyMetaTags = async () => {
     const code = getMetaTagCode(meta);
@@ -47,15 +51,37 @@ export function ProblemList({ issues, meta }: ProblemListProps) {
     );
   }
 
+  const issueCount = otherIssues.length;
+
   return (
     <div className="space-y-4">
+      {/* JavaScript Rendering Warning - shown prominently */}
+      {jsWarning && (
+        <Card className="border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950">
+          <CardContent className="flex items-start gap-4 pt-6">
+            <div className="rounded-lg bg-amber-100 p-2 dark:bg-amber-900">
+              <Zap className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-amber-800 dark:text-amber-200">
+                {jsWarning.message}
+              </h3>
+              <p className="mt-1 text-sm text-amber-700 dark:text-amber-300">
+                {jsWarning.suggestion}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {issueCount > 0 && (
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
             <span className="flex items-center gap-2">
               Issues Found
               <span className="rounded-full bg-muted px-2 py-0.5 text-sm font-normal">
-                {globalIssues.length}
+                {issueCount}
               </span>
             </span>
             <div className="flex gap-2">
@@ -148,6 +174,7 @@ export function ProblemList({ issues, meta }: ProblemListProps) {
           )}
         </CardContent>
       </Card>
+      )}
     </div>
   );
 }

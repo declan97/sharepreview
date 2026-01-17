@@ -17,7 +17,10 @@ export const metadata: Metadata = {
     title: "Slack Link Preview Checker",
     description:
       "Check how your links will appear when shared in Slack. See the unfurl preview before you post.",
-    url: "https://sharepreview.vercel.app/slack-preview",
+    url: "https://sharepreview.com/slack-preview",
+  },
+  alternates: {
+    canonical: "https://sharepreview.com/slack-preview",
   },
 };
 

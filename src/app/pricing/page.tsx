@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: "Pricing",
   description:
     "Choose the right plan for your link preview needs. Start free, upgrade when you need more.",
+  alternates: {
+    canonical: "https://sharepreview.com/pricing",
+  },
 };
 
 const plans = [
