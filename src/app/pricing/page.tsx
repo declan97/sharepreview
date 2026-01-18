@@ -20,29 +20,51 @@ const features = {
     "All OG image templates",
     "Custom branding on images",
     "90-day check history",
+    "Monitor up to 25 URLs",
+    "Daily automated checks",
+    "Email alerts",
     "API access (1,000 calls/mo)",
     "Priority support",
+  ],
+  team: [
+    "Everything in Pro",
+    "Monitor up to 100 URLs",
+    "Hourly check frequency",
+    "Slack & Discord alerts",
+    "5 team members",
+    "1-year check history",
+    "API access (10,000 calls/mo)",
+    "Dedicated support",
   ],
 };
 
 const comparisonFeatures = [
-  { name: "Daily checks", free: "10", pro: "Unlimited" },
-  { name: "Platform previews", free: "All 4", pro: "All 4" },
-  { name: "Issue detection", free: "Basic", pro: "Advanced" },
-  { name: "OG image templates", free: "5", pro: "All 20+" },
-  { name: "Custom branding", free: false, pro: true },
-  { name: "Check history", free: false, pro: "90 days" },
-  { name: "API access", free: false, pro: "1,000 calls/mo" },
-  { name: "Priority support", free: false, pro: true },
+  { name: "Daily checks", free: "10", pro: "Unlimited", team: "Unlimited" },
+  { name: "Platform previews", free: "All 4", pro: "All 4", team: "All 4" },
+  { name: "Issue detection", free: "Basic", pro: "Advanced", team: "Advanced" },
+  { name: "OG image templates", free: "5", pro: "All 20+", team: "All 20+" },
+  { name: "Custom branding", free: false, pro: true, team: true },
+  { name: "Check history", free: false, pro: "90 days", team: "1 year" },
+  { name: "URL monitoring", free: false, pro: "25 URLs", team: "100 URLs" },
+  { name: "Check frequency", free: "—", pro: "Daily", team: "Hourly" },
+  { name: "Email alerts", free: false, pro: true, team: true },
+  { name: "Slack/Discord alerts", free: false, pro: false, team: true },
+  { name: "Team members", free: "—", pro: "1", team: "5" },
+  { name: "API access", free: false, pro: "1,000/mo", team: "10,000/mo" },
 ];
 
 export default function PricingPage() {
   const [isAnnual, setIsAnnual] = useState(true);
 
-  const monthlyPrice = 12;
-  const annualPrice = 8; // per month when paid annually
-  const annualTotal = annualPrice * 12;
-  const savings = Math.round(((monthlyPrice - annualPrice) / monthlyPrice) * 100);
+  const proMonthlyPrice = 12;
+  const proAnnualPrice = 8; // per month when paid annually
+  const proAnnualTotal = proAnnualPrice * 12;
+
+  const teamMonthlyPrice = 29;
+  const teamAnnualPrice = 24; // per month when paid annually
+  const teamAnnualTotal = teamAnnualPrice * 12;
+
+  const savings = Math.round(((proMonthlyPrice - proAnnualPrice) / proMonthlyPrice) * 100);
 
   return (
     <div className="flex flex-col">
@@ -102,8 +124,8 @@ export default function PricingPage() {
 
       {/* Pricing Cards */}
       <section className="px-4 py-20">
-        <div className="container mx-auto max-w-5xl">
-          <div className="grid gap-8 lg:grid-cols-2">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid gap-8 lg:grid-cols-3">
             {/* Free Plan */}
             <div className="relative rounded-2xl border bg-card p-8 shadow-sm">
               <div className="flex items-center gap-3">
@@ -163,18 +185,18 @@ export default function PricingPage() {
 
               <div className="mt-6">
                 <span className="text-5xl font-bold">
-                  ${isAnnual ? annualPrice : monthlyPrice}
+                  ${isAnnual ? proAnnualPrice : proMonthlyPrice}
                 </span>
                 <span className="text-muted-foreground">/month</span>
                 {isAnnual && (
                   <span className="ml-2 text-sm text-muted-foreground">
-                    billed annually (${annualTotal}/year)
+                    billed annually (${proAnnualTotal}/year)
                   </span>
                 )}
               </div>
 
               <p className="mt-4 text-muted-foreground">
-                Unlimited checks so you can verify every link, every time.
+                Unlimited checks + monitoring for your key URLs.
               </p>
 
               <Link href="/dashboard" className="mt-8 block">
@@ -197,13 +219,62 @@ export default function PricingPage() {
                 ))}
               </ul>
             </div>
+
+            {/* Team Plan */}
+            <div className="relative rounded-2xl border bg-card p-8 shadow-sm">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted">
+                  <Zap className="h-5 w-5 text-muted-foreground" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold">Team</h3>
+                  <p className="text-sm text-muted-foreground">For growing teams</p>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <span className="text-5xl font-bold">
+                  ${isAnnual ? teamAnnualPrice : teamMonthlyPrice}
+                </span>
+                <span className="text-muted-foreground">/month</span>
+                {isAnnual && (
+                  <span className="ml-2 text-sm text-muted-foreground">
+                    billed annually (${teamAnnualTotal}/year)
+                  </span>
+                )}
+              </div>
+
+              <p className="mt-4 text-muted-foreground">
+                Advanced monitoring with hourly checks and team collaboration.
+              </p>
+
+              <Link href="/dashboard" className="mt-8 block">
+                <Button variant="outline" className="w-full" size="lg">
+                  Start Free Trial
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+
+              <p className="mt-3 text-center text-xs text-muted-foreground">
+                14-day free trial • No credit card required
+              </p>
+
+              <ul className="mt-8 space-y-4">
+                {features.team.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3">
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
+                    <span className="text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Enterprise callout */}
           <div className="mt-12 rounded-2xl border bg-muted/30 p-8 text-center">
             <h3 className="text-lg font-semibold">Need more?</h3>
             <p className="mt-2 text-muted-foreground">
-              Looking for team features, higher API limits, or custom integrations?
+              Looking for custom integrations, white-label reports, or higher limits?
             </p>
             <a
               href="mailto:hello@sharepreview.com"
@@ -218,7 +289,7 @@ export default function PricingPage() {
 
       {/* Feature Comparison */}
       <section className="border-t bg-muted/20 px-4 py-20">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-5xl">
           <h2 className="text-center text-3xl font-bold">Compare plans</h2>
           <p className="mt-4 text-center text-muted-foreground">
             See exactly what you get with each plan.
@@ -232,6 +303,9 @@ export default function PricingPage() {
                   <th className="px-6 py-4 text-center text-sm font-semibold">Free</th>
                   <th className="px-6 py-4 text-center text-sm font-semibold">
                     <span className="text-primary">Pro</span>
+                  </th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold">
+                    <span className="text-primary">Team</span>
                   </th>
                 </tr>
               </thead>
@@ -261,7 +335,18 @@ export default function PricingPage() {
                           <span className="text-muted-foreground/50">—</span>
                         )
                       ) : (
-                        <span className="font-medium text-primary">{feature.pro}</span>
+                        <span className="font-medium">{feature.pro}</span>
+                      )}
+                    </td>
+                    <td className="px-6 py-4 text-center text-sm">
+                      {typeof feature.team === "boolean" ? (
+                        feature.team ? (
+                          <Check className="mx-auto h-5 w-5 text-primary" />
+                        ) : (
+                          <span className="text-muted-foreground/50">—</span>
+                        )
+                      ) : (
+                        <span className="font-medium text-primary">{feature.team}</span>
                       )}
                     </td>
                   </tr>

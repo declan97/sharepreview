@@ -16,6 +16,7 @@ model User {
   checksToday   Int       @default(0)
   lastCheckDate DateTime?
   checks        Check[]
+  monitors      Monitor[]
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime  @default(now())
@@ -70,4 +71,68 @@ model Check {
 
   @@index([userId])
   @@index([createdAt])
+}
+
+// ============================================
+// MONITORING FEATURE
+// ============================================
+
+model Monitor {
+  id             String         @id @default(cuid())
+  url            String
+  nickname       String?
+  userId         String
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  checkFrequency String         @default("daily") // daily | hourly
+  status         String         @default("healthy") // healthy | warning | broken
+  alertsEnabled  Boolean        @default(true)
+  lastCheckedAt  DateTime?
+  lastSnapshot   String?        // JSON of last meta tags
+  checks         MonitorCheck[]
+  alerts         Alert[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  @@unique([userId, url])
+  @@index([userId])
+  @@index([status])
+}
+
+model MonitorCheck {
+  id              String   @id @default(cuid())
+  monitorId       String
+  monitor         Monitor  @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+  status          String   // healthy | warning | broken
+  issues          String   @default("[]") // JSON array of issue codes
+  snapshot        String   // JSON of all meta tags at check time
+  platformResults String   @default("{}") // JSON of per-platform pass/fail
+  title           String?
+  description     String?
+  image           String?
+  imageStatus     String?  // JSON of image validation result
+  checkedAt       DateTime @default(now())
+  alerts          Alert[]
+
+  @@index([monitorId])
+  @@index([checkedAt])
+}
+
+model Alert {
+  id             String        @id @default(cuid())
+  monitorId      String
+  monitor        Monitor       @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+  checkId        String?
+  check          MonitorCheck? @relation(fields: [checkId], references: [id], onDelete: SetNull)
+  type           String        // image_broken | title_changed | description_truncated | tags_removed | etc
+  message        String
+  previousValue  String?
+  currentValue   String?
+  channel        String        @default("email") // email | slack | discord
+  sentAt         DateTime?
+  acknowledged   Boolean       @default(false)
+  acknowledgedAt DateTime?
+  createdAt      DateTime      @default(now())
+
+  @@index([monitorId])
+  @@index([acknowledged])
 }

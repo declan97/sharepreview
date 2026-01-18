@@ -41,6 +41,12 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/features/monitoring"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
+              Monitoring
+            </Link>
             <div className="relative group">
               <button className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
                 Resources
@@ -129,6 +135,13 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/features/monitoring"
+              onClick={() => setMobileMenuOpen(false)}
+              className="rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              Monitoring
+            </Link>
             <Link
               href="/pricing"
               onClick={() => setMobileMenuOpen(false)}
