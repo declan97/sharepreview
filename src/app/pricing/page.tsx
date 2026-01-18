@@ -63,29 +63,34 @@ export default function PricingPage() {
 
           {/* Billing Toggle */}
           <div className="mt-10 flex items-center justify-center gap-4">
-            <span
-              className={`text-sm font-medium ${!isAnnual ? "text-foreground" : "text-muted-foreground"}`}
+            <button
+              onClick={() => setIsAnnual(false)}
+              className={`text-sm font-medium transition-colors ${!isAnnual ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
             >
               Monthly
-            </span>
+            </button>
             <button
               onClick={() => setIsAnnual(!isAnnual)}
-              className={`relative h-7 w-14 rounded-full transition-colors ${
-                isAnnual ? "bg-primary" : "bg-muted"
+              className={`relative h-8 w-16 rounded-full transition-colors ${
+                isAnnual ? "bg-primary" : "bg-muted-foreground/30"
               }`}
               aria-label="Toggle billing period"
+              role="switch"
+              aria-checked={isAnnual}
             >
               <span
-                className={`absolute top-1 h-5 w-5 rounded-full bg-white shadow-sm transition-transform ${
-                  isAnnual ? "translate-x-8" : "translate-x-1"
-                }`}
+                className="absolute left-1 top-1 h-6 w-6 rounded-full bg-white shadow-md transition-all duration-200"
+                style={{
+                  transform: isAnnual ? "translateX(32px)" : "translateX(0)",
+                }}
               />
             </button>
-            <span
-              className={`text-sm font-medium ${isAnnual ? "text-foreground" : "text-muted-foreground"}`}
+            <button
+              onClick={() => setIsAnnual(true)}
+              className={`text-sm font-medium transition-colors ${isAnnual ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
             >
               Annual
-            </span>
+            </button>
             {isAnnual && (
               <span className="rounded-full bg-success/10 px-3 py-1 text-xs font-semibold text-success">
                 Save {savings}%
