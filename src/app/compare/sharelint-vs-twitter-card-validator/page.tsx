@@ -4,26 +4,26 @@ import { Check, X, ArrowRight, AlertTriangle } from "lucide-react";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "SharePreview vs Twitter Card Validator - Free Alternative | SharePreview",
+  title: "ShareLint vs Twitter Card Validator - Free Alternative | ShareLint",
   description:
-    "Twitter Card Validator was discontinued. SharePreview is the free alternative for testing Twitter/X cards. Compare features and start testing your Twitter cards instantly.",
+    "Twitter Card Validator was discontinued. ShareLint is the free alternative for testing Twitter/X cards. Compare features and start testing your Twitter cards instantly.",
   keywords: [
     "twitter card validator alternative",
     "twitter card validator replacement",
     "twitter card validator discontinued",
     "twitter card tester",
-    "sharepreview vs twitter",
+    "sharelint vs twitter",
     "x card validator alternative",
     "twitter preview tool",
   ],
   openGraph: {
-    title: "SharePreview vs Twitter Card Validator",
+    title: "ShareLint vs Twitter Card Validator",
     description:
-      "Twitter Card Validator was discontinued. Compare with SharePreview, the free alternative.",
-    url: "https://sharepreview.com/compare/sharepreview-vs-twitter-card-validator",
+      "Twitter Card Validator was discontinued. Compare with ShareLint, the free alternative.",
+    url: "https://sharelint.com/compare/sharelint-vs-twitter-card-validator",
   },
   alternates: {
-    canonical: "https://sharepreview.com/compare/sharepreview-vs-twitter-card-validator",
+    canonical: "https://sharelint.com/compare/sharelint-vs-twitter-card-validator",
   },
 };
 
@@ -36,31 +36,31 @@ const faqSchema = {
       name: "What happened to Twitter Card Validator?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Twitter (now X) discontinued their official Card Validator tool. It is no longer available or maintained. SharePreview now serves as the primary free alternative for validating Twitter cards.",
+        text: "Twitter (now X) discontinued their official Card Validator tool. It is no longer available or maintained. ShareLint now serves as the primary free alternative for validating Twitter cards.",
       },
     },
     {
       "@type": "Question",
-      name: "Is SharePreview a good replacement for Twitter Card Validator?",
+      name: "Is ShareLint a good replacement for Twitter Card Validator?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, SharePreview offers all the functionality of the original Twitter Card Validator plus additional features like multi-platform preview (Facebook, LinkedIn, Discord), issue detection, and meta tag recommendations.",
+        text: "Yes, ShareLint offers all the functionality of the original Twitter Card Validator plus additional features like multi-platform preview (Facebook, LinkedIn, Discord), issue detection, and meta tag recommendations.",
       },
     },
     {
       "@type": "Question",
-      name: "Is SharePreview free to use?",
+      name: "Is ShareLint free to use?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, SharePreview offers a free tier that allows you to check Twitter card previews with no signup required. Premium features are available for heavy users.",
+        text: "Yes, ShareLint offers a free tier that allows you to check Twitter card previews with no signup required. Premium features are available for heavy users.",
       },
     },
     {
       "@type": "Question",
-      name: "Can I test Twitter summary_large_image cards with SharePreview?",
+      name: "Can I test Twitter summary_large_image cards with ShareLint?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, SharePreview supports all Twitter card types including summary, summary_large_image, player, and app cards. You can see exactly how your card will appear on Twitter/X.",
+        text: "Yes, ShareLint supports all Twitter card types including summary, summary_large_image, player, and app cards. You can see exactly how your card will appear on Twitter/X.",
       },
     },
   ],
@@ -87,10 +87,10 @@ export default function ComparisonPage() {
             </div>
 
             <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl">
-              SharePreview vs Twitter Card Validator
+              ShareLint vs Twitter Card Validator
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-center text-xl text-muted-foreground">
-              Twitter removed their Card Validator. Here&apos;s how SharePreview compares
+              Twitter removed their Card Validator. Here&apos;s how ShareLint compares
               as the free alternative.
             </p>
 
@@ -98,7 +98,7 @@ export default function ComparisonPage() {
             <div className="mx-auto mt-8 max-w-2xl rounded-xl border bg-card p-6">
               <h2 className="font-semibold">Quick Verdict</h2>
               <p className="mt-2 text-muted-foreground">
-                Since Twitter discontinued their Card Validator, SharePreview is now the
+                Since Twitter discontinued their Card Validator, ShareLint is now the
                 go-to free tool for testing Twitter cards. It offers everything the
                 original did, plus previews for Facebook, LinkedIn, Discord, and Slack.
               </p>
@@ -116,7 +116,7 @@ export default function ComparisonPage() {
                   <tr className="border-b">
                     <th className="px-4 py-3 text-left font-semibold">Feature</th>
                     <th className="px-4 py-3 text-center font-semibold text-primary">
-                      SharePreview
+                      ShareLint
                     </th>
                     <th className="px-4 py-3 text-center font-semibold text-muted-foreground">
                       Twitter Card Validator
@@ -203,11 +203,11 @@ export default function ComparisonPage() {
           </div>
         </section>
 
-        {/* Why SharePreview */}
+        {/* Why ShareLint */}
         <section className="border-t bg-muted/30 px-4 py-16">
           <div className="container mx-auto max-w-4xl">
             <h2 className="mb-8 text-center text-2xl font-bold">
-              Why Use SharePreview Instead?
+              Why Use ShareLint Instead?
             </h2>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="rounded-xl border bg-card p-6">
@@ -221,7 +221,7 @@ export default function ComparisonPage() {
                 <h3 className="font-semibold">No Login Required</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Unlike Twitter&apos;s validator which required a Twitter account,
-                  SharePreview works instantly with no signup.
+                  ShareLint works instantly with no signup.
                 </p>
               </div>
               <div className="rounded-xl border bg-card p-6">
@@ -234,7 +234,7 @@ export default function ComparisonPage() {
               <div className="rounded-xl border bg-card p-6">
                 <h3 className="font-semibold">Actively Maintained</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  SharePreview is actively developed and updated to match platform
+                  ShareLint is actively developed and updated to match platform
                   changes. Twitter&apos;s tool was abandoned.
                 </p>
               </div>
@@ -261,28 +261,28 @@ export default function ComparisonPage() {
               </div>
               <div>
                 <h3 className="font-semibold">
-                  Is SharePreview a good replacement for Twitter Card Validator?
+                  Is ShareLint a good replacement for Twitter Card Validator?
                 </h3>
                 <p className="mt-2 text-muted-foreground">
-                  Yes. SharePreview offers all the functionality of the original
+                  Yes. ShareLint offers all the functionality of the original
                   Twitter Card Validator plus additional features like multi-platform
                   preview, detailed issue detection, and meta tag recommendations.
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold">Is SharePreview free to use?</h3>
+                <h3 className="font-semibold">Is ShareLint free to use?</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Yes, SharePreview offers a free tier that allows you to check Twitter
+                  Yes, ShareLint offers a free tier that allows you to check Twitter
                   card previews with no signup required. Premium features are available
                   for teams and heavy users.
                 </p>
               </div>
               <div>
                 <h3 className="font-semibold">
-                  Can I test summary_large_image cards with SharePreview?
+                  Can I test summary_large_image cards with ShareLint?
                 </h3>
                 <p className="mt-2 text-muted-foreground">
-                  Yes, SharePreview supports all Twitter card types including summary,
+                  Yes, ShareLint supports all Twitter card types including summary,
                   summary_large_image, player, and app cards. You&apos;ll see exactly
                   how your card will appear on Twitter/X.
                 </p>
@@ -294,9 +294,9 @@ export default function ComparisonPage() {
         {/* CTA Section */}
         <section className="border-t bg-primary/5 px-4 py-16">
           <div className="container mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold">Try SharePreview Free</h2>
+            <h2 className="text-2xl font-bold">Try ShareLint Free</h2>
             <p className="mt-4 text-muted-foreground">
-              See for yourself why SharePreview is the best Twitter Card Validator
+              See for yourself why ShareLint is the best Twitter Card Validator
               alternative. Check your first link in seconds.
             </p>
             <Link

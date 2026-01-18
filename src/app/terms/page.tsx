@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "SharePreview terms of service - the rules and guidelines for using our service.",
+  description: "ShareLint terms of service - the rules and guidelines for using our service.",
   alternates: {
-    canonical: "https://sharepreview.com/terms",
+    canonical: "https://sharelint.com/terms",
   },
 };
 
@@ -24,14 +24,14 @@ export default function TermsPage() {
         <div className="container mx-auto max-w-3xl prose prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-p:text-muted-foreground prose-li:text-muted-foreground">
           <h2>Agreement to Terms</h2>
           <p>
-            By accessing or using SharePreview (&quot;the Service&quot;), you agree to be bound
+            By accessing or using ShareLint (&quot;the Service&quot;), you agree to be bound
             by these Terms of Service. If you do not agree to these terms, do not use
             the Service.
           </p>
 
           <h2>Description of Service</h2>
           <p>
-            SharePreview provides tools to preview how URLs will appear when shared on
+            ShareLint provides tools to preview how URLs will appear when shared on
             social media platforms including Facebook, Twitter, LinkedIn, Discord, and
             Slack. We also provide OG image generation and meta tag validation services.
           </p>
@@ -72,7 +72,7 @@ export default function TermsPage() {
           <h2>Intellectual Property</h2>
           <p>
             The Service, including its design, features, and content, is owned by
-            SharePreview and protected by intellectual property laws. You may not copy,
+            ShareLint and protected by intellectual property laws. You may not copy,
             modify, or distribute any part of the Service without permission.
           </p>
 
@@ -106,7 +106,7 @@ export default function TermsPage() {
 
           <h2>Indemnification</h2>
           <p>
-            You agree to indemnify and hold harmless SharePreview from any claims,
+            You agree to indemnify and hold harmless ShareLint from any claims,
             damages, or expenses arising from your use of the Service or violation
             of these Terms.
           </p>
@@ -133,8 +133,8 @@ export default function TermsPage() {
           <h2>Contact</h2>
           <p>
             For questions about these Terms, contact us at{" "}
-            <a href="mailto:legal@sharepreview.com" className="text-primary hover:underline">
-              legal@sharepreview.com
+            <a href="mailto:legal@sharelint.com" className="text-primary hover:underline">
+              legal@sharelint.com
             </a>
           </p>
         </div>

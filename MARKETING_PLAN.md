@@ -1,4 +1,4 @@
-# SharePreview Marketing Plan: $10K/Month Goal
+# ShareLint Marketing Plan: $10K/Month Goal
 
 ## Revenue Model & Funnel Math
 
@@ -162,7 +162,7 @@ Assuming 5% monthly churn (typical for low-cost SaaS):
 Each post should:
 - Answer the search query in the first paragraph
 - Include our tool as the solution
-- Have a clear CTA to use SharePreview
+- Have a clear CTA to use ShareLint
 - Include FAQ section (for featured snippets)
 - Be 1,500-2,500 words for SEO
 

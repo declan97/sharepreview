@@ -100,7 +100,7 @@ export function ComparisonPageTemplate({ content }: ComparisonPageTemplateProps)
                     <tr key={feature.name} className="border-b">
                       <td className="px-4 py-3">{feature.name}</td>
                       <td className="px-4 py-3 text-center">
-                        {renderFeatureValue(feature.sharePreview)}
+                        {renderFeatureValue(feature.shareLint)}
                       </td>
                       <td className="px-4 py-3 text-center">
                         {renderFeatureValue(feature.competitor)}

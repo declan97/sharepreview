@@ -38,7 +38,7 @@ export function Footer() {
                 <LogoIcon className="h-6 w-6" />
               </div>
               <span className="text-xl font-semibold tracking-tight">
-                Share<span className="text-primary">Preview</span>
+                Share<span className="text-primary">Lint</span>
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -47,7 +47,7 @@ export function Footer() {
             </p>
             <div className="mt-6 flex items-center gap-4">
               <a
-                href="https://twitter.com/sharepreview"
+                href="https://twitter.com/sharelint"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-lg border bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
@@ -58,7 +58,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://github.com/sharepreview"
+                href="https://github.com/sharelint"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-lg border bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
@@ -135,7 +135,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} SharePreview. All rights reserved.
+            &copy; {new Date().getFullYear()} ShareLint. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
             Built with{" "}

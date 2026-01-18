@@ -12,7 +12,7 @@ export interface ComparisonPageContent {
   quickVerdict: string;
   features: {
     name: string;
-    sharePreview: string | boolean;
+    shareLint: string | boolean;
     competitor: string | boolean;
   }[];
   advantages: {
@@ -36,13 +36,13 @@ export interface ComparisonPageContent {
 
 export const comparisonPages: ComparisonPageContent[] = [
   {
-    slug: "sharepreview-vs-facebook-debugger",
-    title: "SharePreview vs Facebook Sharing Debugger",
-    metaTitle: "SharePreview vs Facebook Sharing Debugger - Comparison",
+    slug: "sharelint-vs-facebook-debugger",
+    title: "ShareLint vs Facebook Sharing Debugger",
+    metaTitle: "ShareLint vs Facebook Sharing Debugger - Comparison",
     metaDescription:
-      "Compare SharePreview with Facebook's Sharing Debugger. See which tool is better for checking link previews and fixing Open Graph issues.",
+      "Compare ShareLint with Facebook's Sharing Debugger. See which tool is better for checking link previews and fixing Open Graph issues.",
     keywords: [
-      "sharepreview vs facebook debugger",
+      "sharelint vs facebook debugger",
       "facebook sharing debugger alternative",
       "facebook debugger comparison",
       "og debugger alternative",
@@ -51,51 +51,51 @@ export const comparisonPages: ComparisonPageContent[] = [
     competitorName: "Facebook Sharing Debugger",
     status: "active",
     quickVerdict:
-      "Facebook's Debugger is great for Facebook-specific debugging but only works for one platform. SharePreview shows previews across 5 platforms at once, making it faster for multi-platform validation.",
+      "Facebook's Debugger is great for Facebook-specific debugging but only works for one platform. ShareLint shows previews across 5 platforms at once, making it faster for multi-platform validation.",
     features: [
       {
         name: "Available without login",
-        sharePreview: true,
+        shareLint: true,
         competitor: "Requires Facebook account",
       },
       {
         name: "Facebook preview",
-        sharePreview: true,
+        shareLint: true,
         competitor: true,
       },
       {
         name: "Twitter/X preview",
-        sharePreview: true,
+        shareLint: true,
         competitor: false,
       },
       {
         name: "LinkedIn preview",
-        sharePreview: true,
+        shareLint: true,
         competitor: false,
       },
       {
         name: "Discord preview",
-        sharePreview: true,
+        shareLint: true,
         competitor: false,
       },
       {
         name: "Clear Facebook cache",
-        sharePreview: "Use FB Debugger",
+        shareLint: "Use FB Debugger",
         competitor: true,
       },
       {
         name: "Issue detection",
-        sharePreview: true,
+        shareLint: true,
         competitor: "Basic warnings only",
       },
       {
         name: "Fix recommendations",
-        sharePreview: true,
+        shareLint: true,
         competitor: false,
       },
       {
         name: "Free to use",
-        sharePreview: true,
+        shareLint: true,
         competitor: true,
       },
     ],
@@ -108,7 +108,7 @@ export const comparisonPages: ComparisonPageContent[] = [
       {
         title: "No Login Required",
         description:
-          "SharePreview works instantly without any account. Facebook Debugger requires a Facebook account.",
+          "ShareLint works instantly without any account. Facebook Debugger requires a Facebook account.",
       },
       {
         title: "Actionable Recommendations",
@@ -125,17 +125,17 @@ export const comparisonPages: ComparisonPageContent[] = [
       {
         question: "When should I use Facebook Debugger instead?",
         answer:
-          "Use Facebook Debugger when you specifically need to clear Facebook's cache or see detailed Open Graph parsing information. For general preview checking, SharePreview is faster.",
+          "Use Facebook Debugger when you specifically need to clear Facebook's cache or see detailed Open Graph parsing information. For general preview checking, ShareLint is faster.",
       },
       {
-        question: "Can SharePreview clear Facebook's cache?",
+        question: "Can ShareLint clear Facebook's cache?",
         answer:
           "No, only Facebook can clear its own cache. Use Facebook Sharing Debugger's 'Scrape Again' button for that specific function.",
       },
       {
-        question: "Is SharePreview more accurate than Facebook Debugger?",
+        question: "Is ShareLint more accurate than Facebook Debugger?",
         answer:
-          "For Facebook previews specifically, Facebook Debugger shows exactly what Facebook sees. SharePreview simulates the preview accurately for most use cases.",
+          "For Facebook previews specifically, Facebook Debugger shows exactly what Facebook sees. ShareLint simulates the preview accurately for most use cases.",
       },
     ],
     relatedLinks: [
@@ -150,20 +150,20 @@ export const comparisonPages: ComparisonPageContent[] = [
         description: "Troubleshoot Facebook preview problems.",
       },
     ],
-    ctaTitle: "Try SharePreview Free",
+    ctaTitle: "Try ShareLint Free",
     ctaDescription:
       "Check your links across Facebook, Twitter, LinkedIn, Discord, and Slack instantly.",
     ctaButtonText: "Check Your Link",
     ctaHref: ROUTES.home,
   },
   {
-    slug: "sharepreview-vs-metatags-io",
-    title: "SharePreview vs Metatags.io",
-    metaTitle: "SharePreview vs Metatags.io - Feature Comparison",
+    slug: "sharelint-vs-metatags-io",
+    title: "ShareLint vs Metatags.io",
+    metaTitle: "ShareLint vs Metatags.io - Feature Comparison",
     metaDescription:
-      "Compare SharePreview with Metatags.io for social media preview testing. See features, pricing, and which tool is best for your needs.",
+      "Compare ShareLint with Metatags.io for social media preview testing. See features, pricing, and which tool is best for your needs.",
     keywords: [
-      "sharepreview vs metatags",
+      "sharelint vs metatags",
       "metatags.io alternative",
       "social preview tools comparison",
       "og preview generator",
@@ -172,56 +172,56 @@ export const comparisonPages: ComparisonPageContent[] = [
     competitorName: "Metatags.io",
     status: "active",
     quickVerdict:
-      "Both tools are excellent for previewing social links. SharePreview focuses on accurate platform-specific previews with detailed issue detection, while Metatags.io includes a meta tag generator for creating tags from scratch.",
+      "Both tools are excellent for previewing social links. ShareLint focuses on accurate platform-specific previews with detailed issue detection, while Metatags.io includes a meta tag generator for creating tags from scratch.",
     features: [
       {
         name: "Free tier available",
-        sharePreview: true,
+        shareLint: true,
         competitor: true,
       },
       {
         name: "Facebook preview",
-        sharePreview: true,
+        shareLint: true,
         competitor: true,
       },
       {
         name: "Twitter preview",
-        sharePreview: true,
+        shareLint: true,
         competitor: true,
       },
       {
         name: "LinkedIn preview",
-        sharePreview: true,
+        shareLint: true,
         competitor: true,
       },
       {
         name: "Discord preview",
-        sharePreview: true,
+        shareLint: true,
         competitor: false,
       },
       {
         name: "Slack preview",
-        sharePreview: true,
+        shareLint: true,
         competitor: false,
       },
       {
         name: "Meta tag generator",
-        sharePreview: "Coming soon",
+        shareLint: "Coming soon",
         competitor: true,
       },
       {
         name: "Issue detection",
-        sharePreview: true,
+        shareLint: true,
         competitor: "Basic",
       },
       {
         name: "Fix recommendations",
-        sharePreview: true,
+        shareLint: true,
         competitor: false,
       },
       {
         name: "No signup required",
-        sharePreview: true,
+        shareLint: true,
         competitor: true,
       },
     ],
@@ -229,7 +229,7 @@ export const comparisonPages: ComparisonPageContent[] = [
       {
         title: "More Platform Coverage",
         description:
-          "SharePreview includes Discord and Slack previews, which Metatags.io doesn't support.",
+          "ShareLint includes Discord and Slack previews, which Metatags.io doesn't support.",
       },
       {
         title: "Detailed Issue Detection",
@@ -251,17 +251,17 @@ export const comparisonPages: ComparisonPageContent[] = [
       {
         question: "Which tool is better for generating meta tags from scratch?",
         answer:
-          "Metatags.io has a built-in generator that's great for creating tags. SharePreview is better for validating existing tags and getting fix recommendations.",
+          "Metatags.io has a built-in generator that's great for creating tags. ShareLint is better for validating existing tags and getting fix recommendations.",
       },
       {
-        question: "Does SharePreview have a meta tag generator?",
+        question: "Does ShareLint have a meta tag generator?",
         answer:
-          "Not yet, but it's on our roadmap. Currently SharePreview focuses on validation and issue detection.",
+          "Not yet, but it's on our roadmap. Currently ShareLint focuses on validation and issue detection.",
       },
       {
         question: "Which tool is more accurate?",
         answer:
-          "Both simulate previews based on your meta tags. The main difference is SharePreview covers more platforms and provides more detailed issue detection.",
+          "Both simulate previews based on your meta tags. The main difference is ShareLint covers more platforms and provides more detailed issue detection.",
       },
     ],
     relatedLinks: [
@@ -276,7 +276,7 @@ export const comparisonPages: ComparisonPageContent[] = [
         description: "Correct image sizes for social media.",
       },
     ],
-    ctaTitle: "Try SharePreview Free",
+    ctaTitle: "Try ShareLint Free",
     ctaDescription:
       "See how your links look on 5 platforms including Discord and Slack.",
     ctaButtonText: "Check Your Link",

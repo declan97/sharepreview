@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/dashboard/"],
       },
     ],
-    sitemap: "https://sharepreview.com/sitemap.xml",
+    sitemap: "https://sharelint.com/sitemap.xml",
   };
 }

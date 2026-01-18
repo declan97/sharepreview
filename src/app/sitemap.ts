@@ -4,7 +4,7 @@ import { getAllGuideSlugs } from "@/content/guides/data";
 import { getAllComparisonSlugs } from "@/content/comparisons/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.com";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.com";
 
   // Static fix page slugs (have their own static pages)
   const staticFixSlugs = ["facebook-preview-not-showing", "twitter-card-not-working"];
@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticGuideSlugs = ["og-image-size", "twitter-card-size"];
 
   // Static comparison slugs (have their own static pages)
-  const staticComparisonSlugs = ["sharepreview-vs-twitter-card-validator"];
+  const staticComparisonSlugs = ["sharelint-vs-twitter-card-validator"];
 
   // Generate dynamic fix page entries
   const dynamicFixPages = getAllFixSlugs()
@@ -111,7 +111,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Static comparison pages
     {
-      url: `${baseUrl}/compare/sharepreview-vs-twitter-card-validator`,
+      url: `${baseUrl}/compare/sharelint-vs-twitter-card-validator`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,

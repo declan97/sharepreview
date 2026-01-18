@@ -18,8 +18,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "SharePreview - Social Media Link Preview Checker",
-    template: "%s | SharePreview",
+    default: "ShareLint - Social Media Link Preview Checker",
+    template: "%s | ShareLint",
   },
   description:
     "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them. Check your link preview in 2 seconds.",
@@ -33,18 +33,18 @@ export const metadata: Metadata = {
     "open graph",
     "meta tags",
   ],
-  authors: [{ name: "SharePreview" }],
-  creator: "SharePreview",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app"),
+  authors: [{ name: "ShareLint" }],
+  creator: "ShareLint",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.vercel.app"),
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app",
-    siteName: "SharePreview",
-    title: "SharePreview - Social Media Link Preview Checker",
+    url: process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.vercel.app",
+    siteName: "ShareLint",
+    title: "ShareLint - Social Media Link Preview Checker",
     description:
       "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them.",
     images: [
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
         url: "/api/og",
         width: 1200,
         height: 630,
-        alt: "SharePreview - Social Media Link Preview Checker",
+        alt: "ShareLint - Social Media Link Preview Checker",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SharePreview - Social Media Link Preview Checker",
+    title: "ShareLint - Social Media Link Preview Checker",
     description:
       "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them.",
     images: ["/api/og"],
@@ -79,10 +79,10 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "SharePreview",
+  name: "ShareLint",
   description:
     "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them.",
-  url: process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app",
+  url: process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.vercel.app",
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Web",
   offers: {

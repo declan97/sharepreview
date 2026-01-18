@@ -9,8 +9,8 @@ interface SendAlertEmailParams {
 }
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const FROM_EMAIL = process.env.FROM_EMAIL || "alerts@sharepreview.com";
-const DASHBOARD_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.com";
+const FROM_EMAIL = process.env.FROM_EMAIL || "alerts@sharelint.com";
+const DASHBOARD_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.com";
 
 export async function sendAlertEmail(params: SendAlertEmailParams): Promise<{ success: boolean; error?: string }> {
   const { to, monitor, check, alert } = params;
@@ -42,7 +42,7 @@ export async function sendAlertEmail(params: SendAlertEmailParams): Promise<{ su
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: `SharePreview <${FROM_EMAIL}>`,
+        from: `ShareLint <${FROM_EMAIL}>`,
         to: [to],
         subject,
         html,

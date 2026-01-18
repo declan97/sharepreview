@@ -73,7 +73,7 @@ async function validateImageUrl(imageUrl: string): Promise<ImageStatus> {
       signal: controller.signal,
       method: "HEAD",
       headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; SharePreview/1.0; +https://sharepreview.com)",
+        "User-Agent": "Mozilla/5.0 (compatible; ShareLint/1.0; +https://sharelint.com)",
       },
       redirect: "follow",
     });
@@ -111,7 +111,7 @@ export async function getImageDimensions(
     const result = await probe(imageUrl, {
       timeout: 5000,
       headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; SharePreview/1.0; +https://sharepreview.com)",
+        "User-Agent": "Mozilla/5.0 (compatible; ShareLint/1.0; +https://sharelint.com)",
       },
     });
 
@@ -260,7 +260,7 @@ export async function parseMetaTags(url: string): Promise<ParseResult> {
       response = await fetch(url, {
         signal: controller.signal,
         headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; SharePreview/1.0; +https://sharepreview.com)",
+          "User-Agent": "Mozilla/5.0 (compatible; ShareLint/1.0; +https://sharelint.com)",
           Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         },
         redirect: "follow",

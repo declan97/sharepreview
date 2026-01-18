@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "SharePreview privacy policy - how we collect, use, and protect your data.",
+  description: "ShareLint privacy policy - how we collect, use, and protect your data.",
   alternates: {
-    canonical: "https://sharepreview.com/privacy",
+    canonical: "https://sharelint.com/privacy",
   },
 };
 
@@ -24,7 +24,7 @@ export default function PrivacyPage() {
         <div className="container mx-auto max-w-3xl prose prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-p:text-muted-foreground prose-li:text-muted-foreground">
           <h2>Introduction</h2>
           <p>
-            SharePreview (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy.
+            ShareLint (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy.
             This Privacy Policy explains how we collect, use, disclose, and safeguard your
             information when you use our website and services.
           </p>
@@ -103,8 +103,8 @@ export default function PrivacyPage() {
           <h2>Contact Us</h2>
           <p>
             If you have questions about this Privacy Policy, please contact us at{" "}
-            <a href="mailto:privacy@sharepreview.com" className="text-primary hover:underline">
-              privacy@sharepreview.com
+            <a href="mailto:privacy@sharelint.com" className="text-primary hover:underline">
+              privacy@sharelint.com
             </a>
           </p>
         </div>

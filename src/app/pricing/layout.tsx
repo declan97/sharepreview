@@ -5,10 +5,10 @@ export const metadata: Metadata = {
   description:
     "Simple, transparent pricing. Start free with 10 checks per day, upgrade to Pro for unlimited checks. Monthly or annual billing available.",
   alternates: {
-    canonical: "https://sharepreview.com/pricing",
+    canonical: "https://sharelint.com/pricing",
   },
   openGraph: {
-    title: "Pricing | SharePreview",
+    title: "Pricing | ShareLint",
     description:
       "Simple, transparent pricing. Start free, upgrade when you need unlimited checks.",
   },

@@ -1,6 +1,6 @@
 import type { Monitor, MonitorCheck, Alert } from "@prisma/client";
 
-const DASHBOARD_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.com";
+const DASHBOARD_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.com";
 
 interface WebhookPayload {
   monitor: Monitor;
@@ -168,7 +168,7 @@ export async function sendDiscordWebhook(
         ],
         timestamp: new Date(check.checkedAt).toISOString(),
         footer: {
-          text: "SharePreview",
+          text: "ShareLint",
         },
       },
     ],

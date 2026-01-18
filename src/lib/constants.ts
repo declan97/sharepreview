@@ -1,15 +1,15 @@
-// SharePreview Application Constants
+// ShareLint Application Constants
 
 // =============================================================================
 // SEO Constants
 // =============================================================================
 export const SEO = {
-  siteName: "SharePreview",
-  baseUrl: process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.com",
-  defaultTitle: "SharePreview - Social Media Link Preview Checker",
+  siteName: "ShareLint",
+  baseUrl: process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.com",
+  defaultTitle: "ShareLint - Social Media Link Preview Checker",
   defaultDescription:
     "Check how your links look on Facebook, Twitter, LinkedIn, and Discord before sharing. Fix broken preview images, titles, and descriptions instantly.",
-  twitterHandle: "@sharepreview",
+  twitterHandle: "@sharelint",
   defaultOgImage: "/og-image.png",
 } as const;
 
@@ -54,9 +54,9 @@ export const ROUTES = {
 
   // Comparison pages
   compare: {
-    vsTwitterCardValidator: "/compare/sharepreview-vs-twitter-card-validator",
-    vsFacebookDebugger: "/compare/sharepreview-vs-facebook-debugger",
-    vsMetatagsIo: "/compare/sharepreview-vs-metatags-io",
+    vsTwitterCardValidator: "/compare/sharelint-vs-twitter-card-validator",
+    vsFacebookDebugger: "/compare/sharelint-vs-facebook-debugger",
+    vsMetatagsIo: "/compare/sharelint-vs-metatags-io",
   },
 
   // Blog pages
