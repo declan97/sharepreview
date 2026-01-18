@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     title: "Facebook Preview Not Showing? Here's How to Fix It",
     description:
       "Fix your Facebook link preview in minutes. Step-by-step solutions for missing images, titles, and descriptions.",
-    url: "https://sharepreview.com/fix/facebook-preview-not-showing",
+    url: "https://sharelint.com/fix/facebook-preview-not-showing",
   },
   alternates: {
-    canonical: "https://sharepreview.com/fix/facebook-preview-not-showing",
+    canonical: "https://sharelint.com/fix/facebook-preview-not-showing",
   },
 };
 
@@ -307,7 +307,7 @@ export default function FixFacebookPreviewPage() {
               Still Having Issues?
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Use SharePreview to get a detailed diagnosis of your link preview.
+              Use ShareLint to get a detailed diagnosis of your link preview.
               We&apos;ll show you exactly what Facebook sees and highlight any
               issues.
             </p>

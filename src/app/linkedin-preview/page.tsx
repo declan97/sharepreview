@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PlatformLandingPage } from "@/components/platform-landing";
 
 export const metadata: Metadata = {
-  title: "LinkedIn Post Preview Checker - Free LinkedIn Link Tester | SharePreview",
+  title: "LinkedIn Post Preview Checker - Free LinkedIn Link Tester | ShareLint",
   description:
     "Check how your links will appear when shared on LinkedIn. Free LinkedIn preview checker tests your Open Graph images, titles, and descriptions before posting.",
   keywords: [
@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     title: "LinkedIn Post Preview Checker",
     description:
       "Check how your links will appear when shared on LinkedIn. Free preview checker for professionals.",
-    url: "https://sharepreview.com/linkedin-preview",
+    url: "https://sharelint.com/linkedin-preview",
   },
   alternates: {
-    canonical: "https://sharepreview.com/linkedin-preview",
+    canonical: "https://sharelint.com/linkedin-preview",
   },
 };
 

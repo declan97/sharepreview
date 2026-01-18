@@ -99,7 +99,7 @@ export default function TermsPage() {
 
           <h2>Limitation of Liability</h2>
           <p>
-            TO THE MAXIMUM EXTENT PERMITTED BY LAW, SHAREPREVIEW SHALL NOT BE LIABLE
+            TO THE MAXIMUM EXTENT PERMITTED BY LAW, SHARELINT SHALL NOT BE LIABLE
             FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES,
             OR ANY LOSS OF PROFITS OR REVENUES.
           </p>

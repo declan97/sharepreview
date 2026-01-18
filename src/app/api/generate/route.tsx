@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
   const title = searchParams.get("title") || "Your Title Here";
   const description = searchParams.get("description") || "";
   const template = (searchParams.get("template") || "minimal") as keyof typeof templates;
-  const siteName = searchParams.get("siteName") || "sharepreview.com";
+  const siteName = searchParams.get("siteName") || "sharelint.com";
 
   const style = templates[template] || templates.minimal;
   const isGradient = style.bg.includes("gradient");

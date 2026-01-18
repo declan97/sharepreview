@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PlatformLandingPage } from "@/components/platform-landing";
 
 export const metadata: Metadata = {
-  title: "Twitter Card Validator - Free Twitter/X Preview Checker | SharePreview",
+  title: "Twitter Card Validator - Free Twitter/X Preview Checker | ShareLint",
   description:
     "Free Twitter card validator since Twitter removed theirs. Check how your links appear on Twitter/X. Test Twitter cards, preview images, and meta tags instantly.",
   keywords: [
@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     title: "Twitter Card Validator - Free Alternative",
     description:
       "Free Twitter card validator since Twitter removed theirs. Check how your links appear on Twitter/X instantly.",
-    url: "https://sharepreview.com/twitter-preview",
+    url: "https://sharelint.com/twitter-preview",
   },
   alternates: {
-    canonical: "https://sharepreview.com/twitter-preview",
+    canonical: "https://sharelint.com/twitter-preview",
   },
 };
 
@@ -32,7 +32,7 @@ export default function TwitterPreviewPage() {
       platform="twitter"
       title="Twitter Card Validator"
       subtitle="Free Twitter/X card validator since Twitter removed theirs"
-      description="Twitter removed their Card Validator tool. SharePreview is now the go-to replacement for validating your Twitter cards. Check your summary card, large image card, and see exactly what your followers will see before tweeting."
+      description="Twitter removed their Card Validator tool. ShareLint is now the go-to replacement for validating your Twitter cards. Check your summary card, large image card, and see exactly what your followers will see before tweeting."
       features={[
         "Free alternative to Twitter's removed Card Validator",
         "Test summary and summary_large_image cards",
@@ -63,7 +63,7 @@ export default function TwitterPreviewPage() {
         {
           question: "What happened to Twitter's Card Validator?",
           answer:
-            "Twitter (now X) discontinued their official Card Validator tool. SharePreview now serves as the primary free alternative for testing how your links will appear when shared on Twitter/X.",
+            "Twitter (now X) discontinued their official Card Validator tool. ShareLint now serves as the primary free alternative for testing how your links will appear when shared on Twitter/X.",
         },
         {
           question: "What Twitter card types are there?",

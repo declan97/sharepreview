@@ -100,7 +100,7 @@ export function generateAlertEmailHtml(data: AlertEmailData): string {
               <table role="presentation" cellpadding="0" cellspacing="0" style="width: 100%;">
                 <tr>
                   <td>
-                    <img src="${dashboardUrl}/logo.png" alt="SharePreview" width="140" style="display: block;" />
+                    <img src="${dashboardUrl}/logo.png" alt="ShareLint" width="140" style="display: block;" />
                   </td>
                 </tr>
                 <tr>
@@ -269,10 +269,10 @@ export function generateAlertEmailHtml(data: AlertEmailData): string {
           <tr>
             <td style="text-align: center;">
               <p style="margin: 0; font-size: 12px; color: #9ca3af;">
-                SharePreview • Preview monitoring for marketers and creators
+                ShareLint • Preview monitoring for marketers and creators
               </p>
               <p style="margin: 8px 0 0 0; font-size: 12px; color: #9ca3af;">
-                <a href="${dashboardUrl}" style="color: #9ca3af; text-decoration: none;">sharepreview.com</a>
+                <a href="${dashboardUrl}" style="color: #9ca3af; text-decoration: none;">sharelint.com</a>
               </p>
             </td>
           </tr>
@@ -292,7 +292,7 @@ export function generateAlertEmailText(data: AlertEmailData): string {
   const checkUrl = `${dashboardUrl}/dashboard/monitors/${monitor.id}`;
 
   return `
-SHAREPREVIEW ALERT
+SHARELINT ALERT
 ==================
 
 ${alert.message}
@@ -312,7 +312,7 @@ Check URL again: ${monitor.url}
 You're receiving this because you have monitoring enabled for this URL.
 Manage alerts: ${dashboardUrl}/dashboard/monitors/${monitor.id}/settings
 
-SharePreview - Preview monitoring for marketers and creators
+ShareLint - Preview monitoring for marketers and creators
 ${dashboardUrl}
   `.trim();
 }

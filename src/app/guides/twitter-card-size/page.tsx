@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     title: "Twitter Card Size Guide 2024 - Image Dimensions for X Cards",
     description:
       "Get the exact Twitter/X card image sizes for summary and large image cards. Updated for 2024.",
-    url: "https://sharepreview.com/guides/twitter-card-size",
+    url: "https://sharelint.com/guides/twitter-card-size",
   },
   alternates: {
-    canonical: "https://sharepreview.com/guides/twitter-card-size",
+    canonical: "https://sharelint.com/guides/twitter-card-size",
   },
 };
 
@@ -113,12 +113,12 @@ const jsonLd = {
     "The complete guide to Twitter/X card image sizes for all card types.",
   author: {
     "@type": "Organization",
-    name: "SharePreview",
+    name: "ShareLint",
   },
   publisher: {
     "@type": "Organization",
-    name: "SharePreview",
-    url: "https://sharepreview.com",
+    name: "ShareLint",
+    url: "https://sharelint.com",
   },
   datePublished: "2024-01-01",
   dateModified: new Date().toISOString().split("T")[0],

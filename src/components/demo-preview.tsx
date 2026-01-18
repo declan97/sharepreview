@@ -13,12 +13,12 @@ interface DemoData {
 }
 
 const defaultDemoData: DemoData = {
-  title: "SharePreview - Check Your Link Previews",
+  title: "ShareLint - Check Your Link Previews",
   description:
     "See how your links appear on Facebook, Twitter, LinkedIn, and Discord before you share. Fix broken previews in seconds.",
   image: "/og-image.png",
-  url: "https://sharepreview.com",
-  siteName: "SharePreview",
+  url: "https://sharelint.com",
+  siteName: "ShareLint",
 };
 
 export function DemoPreviewSection() {
@@ -55,7 +55,7 @@ export function DemoPreviewSection() {
 
         <p className="mt-10 text-center text-muted-foreground">
           This is how{" "}
-          <span className="font-semibold text-foreground">SharePreview.com</span>{" "}
+          <span className="font-semibold text-foreground">ShareLint.com</span>{" "}
           appears on each platform.{" "}
           <span className="font-semibold text-primary">
             What does your link look like?

@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     title: "OG Image Size Guide 2024 - Perfect Dimensions for Every Platform",
     description:
       "Get the exact og:image dimensions for Facebook, Twitter, LinkedIn, and Discord. Updated for 2024.",
-    url: "https://sharepreview.com/guides/og-image-size",
+    url: "https://sharelint.com/guides/og-image-size",
   },
   alternates: {
-    canonical: "https://sharepreview.com/guides/og-image-size",
+    canonical: "https://sharelint.com/guides/og-image-size",
   },
 };
 
@@ -103,7 +103,7 @@ const faqItems = [
   {
     question: "How do I check if my OG image is working?",
     answer:
-      "Use a link preview checker like SharePreview to see exactly how your image appears on each platform. This helps you catch size issues, cropping problems, and missing images before sharing.",
+      "Use a link preview checker like ShareLint to see exactly how your image appears on each platform. This helps you catch size issues, cropping problems, and missing images before sharing.",
   },
   {
     question: "Why is my OG image not showing on Facebook?",
@@ -121,12 +121,12 @@ const jsonLd = {
     "The complete guide to Open Graph image sizes for Facebook, Twitter, LinkedIn, Discord, and Slack.",
   author: {
     "@type": "Organization",
-    name: "SharePreview",
+    name: "ShareLint",
   },
   publisher: {
     "@type": "Organization",
-    name: "SharePreview",
-    url: "https://sharepreview.com",
+    name: "ShareLint",
+    url: "https://sharelint.com",
   },
   datePublished: "2024-01-01",
   dateModified: new Date().toISOString().split("T")[0],
@@ -300,7 +300,7 @@ export default function OgImageSizeGuidePage() {
               Check Your OG Image Right Now
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Not sure if your OG image is set up correctly? Use SharePreview to
+              Not sure if your OG image is set up correctly? Use ShareLint to
               see exactly how your link appears on every platform.
             </p>
             <div className="mt-8">

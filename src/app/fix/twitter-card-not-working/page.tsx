@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     title: "Twitter Card Not Working? Fix It in 5 Minutes",
     description:
       "Fix your Twitter/X card preview issues fast. Step-by-step solutions that actually work.",
-    url: "https://sharepreview.com/fix/twitter-card-not-working",
+    url: "https://sharelint.com/fix/twitter-card-not-working",
   },
   alternates: {
-    canonical: "https://sharepreview.com/fix/twitter-card-not-working",
+    canonical: "https://sharelint.com/fix/twitter-card-not-working",
   },
 };
 
@@ -99,7 +99,7 @@ const faqItems = [
   {
     question: "How do I validate my Twitter card?",
     answer:
-      "Twitter removed their public Card Validator tool in 2022. Use SharePreview to check your Twitter card preview - it shows exactly how your link will appear when shared on Twitter/X.",
+      "Twitter removed their public Card Validator tool in 2022. Use ShareLint to check your Twitter card preview - it shows exactly how your link will appear when shared on Twitter/X.",
   },
   {
     question: "Why does my card work on Facebook but not Twitter?",
@@ -200,7 +200,7 @@ export default function FixTwitterCardPage() {
           <div className="container mx-auto max-w-4xl">
             <p className="text-sm">
               <strong>Note:</strong> Twitter removed their public Card Validator
-              tool in 2022. Use SharePreview as an alternative to check your
+              tool in 2022. Use ShareLint as an alternative to check your
               Twitter cards before sharing.
             </p>
           </div>
@@ -304,7 +304,7 @@ export default function FixTwitterCardPage() {
               Test Your Twitter Card
             </h2>
             <p className="mt-4 text-muted-foreground">
-              SharePreview shows you exactly how your link will appear on
+              ShareLint shows you exactly how your link will appear on
               Twitter/X. Catch issues before your followers see them.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">

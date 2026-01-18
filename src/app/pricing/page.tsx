@@ -277,7 +277,7 @@ export default function PricingPage() {
               Looking for custom integrations, white-label reports, or higher limits?
             </p>
             <a
-              href="mailto:hello@sharepreview.com"
+              href="mailto:hello@sharelint.com"
               className="mt-4 inline-flex items-center gap-2 font-medium text-primary hover:underline"
             >
               Contact us for Enterprise pricing

@@ -23,7 +23,7 @@ interface OgGeneratorProps {
 export function OgGenerator({
   defaultTitle = "",
   defaultDescription = "",
-  siteName = "sharepreview.com",
+  siteName = "sharelint.com",
 }: OgGeneratorProps) {
   const [title, setTitle] = useState(defaultTitle);
   const [description, setDescription] = useState(defaultDescription);

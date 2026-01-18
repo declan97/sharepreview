@@ -99,7 +99,7 @@ export const fixPages: FixPageContent[] = [
       {
         question: "How do I check if my OG image is set correctly?",
         answer:
-          "Use a link preview checker like SharePreview to see exactly how your image appears on each platform before sharing.",
+          "Use a link preview checker like ShareLint to see exactly how your image appears on each platform before sharing.",
       },
     ],
     relatedLinks: [

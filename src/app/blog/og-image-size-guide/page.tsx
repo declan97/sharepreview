@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "article",
   },
   alternates: {
-    canonical: "https://sharepreview.com/blog/og-image-size-guide",
+    canonical: "https://sharelint.com/blog/og-image-size-guide",
   },
 };
 
@@ -34,11 +34,11 @@ const jsonLd = {
     "The complete guide to Open Graph image sizes for Facebook, Twitter, LinkedIn, Discord, and Slack.",
   author: {
     "@type": "Organization",
-    name: "SharePreview",
+    name: "ShareLint",
   },
   publisher: {
     "@type": "Organization",
-    name: "SharePreview",
+    name: "ShareLint",
   },
   datePublished: "2026-01-01",
   dateModified: "2026-01-01",

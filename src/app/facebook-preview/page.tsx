@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     title: "Facebook Link Preview Checker",
     description:
       "Check how your links will appear when shared on Facebook. See the preview before you post.",
-    url: "https://sharepreview.com/facebook-preview",
+    url: "https://sharelint.com/facebook-preview",
   },
   alternates: {
-    canonical: "https://sharepreview.com/facebook-preview",
+    canonical: "https://sharelint.com/facebook-preview",
   },
 };
 

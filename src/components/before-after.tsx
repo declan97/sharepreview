@@ -149,7 +149,7 @@ export function BeforeAfterSection() {
                   <Sparkles className="h-4 w-4 text-success" />
                 </div>
                 <span className="font-semibold text-success">
-                  After fixing with SharePreview
+                  After fixing with ShareLint
                 </span>
               </div>
               <span className="rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success">

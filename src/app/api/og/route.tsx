@@ -96,7 +96,7 @@ export async function GET() {
               color: "white",
             }}
           >
-            SharePreview
+            ShareLint
           </span>
         </div>
 
@@ -184,7 +184,7 @@ export async function GET() {
         >
           <span>Free link preview checker</span>
           <span>•</span>
-          <span>sharepreview.vercel.app</span>
+          <span>sharelint.vercel.app</span>
         </div>
       </div>
     ),
