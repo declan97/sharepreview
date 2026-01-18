@@ -120,7 +120,7 @@ export const platformSpecs: Record<string, PlatformSpec> = {
   },
 };
 
-export const defaultPlatformOrder = ["facebook", "twitter", "linkedin", "discord"];
+export const defaultPlatformOrder = ["facebook", "twitter", "linkedin", "discord", "slack"];
 
 export function getPlatformSpec(platform: string): PlatformSpec | undefined {
   return platformSpecs[platform.toLowerCase()];

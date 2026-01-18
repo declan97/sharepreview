@@ -28,6 +28,8 @@ export function PreviewCard({ meta, platform, issues }: PreviewCardProps) {
         return <LinkedInPreview title={title} description={description} image={image} siteName={siteName} spec={platform} />;
       case "discord":
         return <DiscordPreview title={title} description={description} image={image} siteName={siteName} url={meta.url} spec={platform} />;
+      case "slack":
+        return <SlackPreview title={title} description={description} image={image} siteName={siteName} url={meta.url} spec={platform} />;
       default:
         return <GenericPreview title={title} description={description} image={image} siteName={siteName} spec={platform} />;
     }
@@ -171,7 +173,15 @@ function LinkedInPreview({ title, description, image, siteName, spec }: Platform
         >
           {truncate(title, spec.titleMaxLength)}
         </h4>
-        <p className="mt-1 text-xs text-gray-500">{siteName}</p>
+        <div className="mt-1 flex items-center gap-1.5">
+          <div
+            className="flex h-4 w-4 items-center justify-center rounded text-[10px] font-bold text-white"
+            style={{ backgroundColor: spec.colors.link }}
+          >
+            {siteName?.charAt(0)?.toUpperCase() || "?"}
+          </div>
+          <p className="text-xs text-gray-500">{siteName}</p>
+        </div>
       </div>
     </div>
   );
@@ -200,6 +210,45 @@ function DiscordPreview({ title, description, image, siteName, spec }: PlatformP
       {image && (
         <div className="m-4 h-20 w-20 shrink-0 overflow-hidden rounded">
           <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SlackPreview({ title, description, image, siteName, url, spec }: PlatformPreviewProps) {
+  return (
+    <div
+      className="overflow-hidden rounded border-l-4"
+      style={{ backgroundColor: spec.colors.card, borderLeftColor: "#36c5f0" }}
+    >
+      <div className="p-3">
+        <div className="flex items-center gap-2">
+          <div className="h-4 w-4 rounded bg-gray-600" />
+          <p className="text-xs font-bold" style={{ color: spec.colors.text }}>
+            {siteName}
+          </p>
+        </div>
+        <h4
+          className="mt-2 font-bold leading-tight"
+          style={{ color: spec.colors.link }}
+        >
+          {truncate(title, spec.titleMaxLength)}
+        </h4>
+        <p className="mt-1 text-sm" style={{ color: spec.colors.text }}>
+          {truncate(description, spec.descriptionMaxLength)}
+        </p>
+        {url && (
+          <p className="mt-1 text-xs" style={{ color: "#9a9b9c" }}>
+            {getDomain(url)}
+          </p>
+        )}
+      </div>
+      {image && (
+        <div className="mx-3 mb-3">
+          <div className="aspect-[1.91/1] w-full max-w-[360px] overflow-hidden rounded">
+            <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+          </div>
         </div>
       )}
     </div>

@@ -21,7 +21,9 @@ import {
   CheckCircle2,
   Clock,
   Shield,
+  RefreshCw,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface CheckResult {
   success: boolean;
@@ -36,17 +38,19 @@ interface CheckResult {
 export default function Home() {
   const [result, setResult] = useState<CheckResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [lastCheckedUrl, setLastCheckedUrl] = useState<string | null>(null);
   const platforms = getAllPlatforms();
 
-  const handleCheck = async (url: string) => {
+  const handleCheck = async (url: string, forceRefresh = false) => {
     setIsLoading(true);
     setResult(null);
+    setLastCheckedUrl(url);
 
     try {
       const response = await fetch("/api/check", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url, forceRefresh }),
       });
 
       const data = await response.json();
@@ -58,6 +62,12 @@ export default function Home() {
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleRecheck = () => {
+    if (lastCheckedUrl) {
+      handleCheck(lastCheckedUrl, true);
     }
   };
 
@@ -152,7 +162,7 @@ export default function Home() {
               </div>
               <div className="hidden h-12 w-px bg-border sm:block" />
               <div className="text-center">
-                <div className="text-3xl font-bold text-foreground">4</div>
+                <div className="text-3xl font-bold text-foreground">5</div>
                 <div className="mt-1 text-sm text-muted-foreground">
                   platforms checked at once
                 </div>
@@ -186,6 +196,26 @@ export default function Home() {
           <div className="container mx-auto max-w-6xl">
             {result.success && result.data ? (
               <div className="space-y-8 animate-fade-up">
+                {/* Recheck Header */}
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h2 className="text-lg font-semibold">Results for</h2>
+                    <p className="text-sm text-muted-foreground font-mono break-all">
+                      {result.data.finalUrl || result.data.url}
+                    </p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleRecheck}
+                    disabled={isLoading}
+                    className="shrink-0"
+                  >
+                    <RefreshCw className={`mr-2 h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
+                    Recheck
+                  </Button>
+                </div>
+
                 {/* Redirect Notice */}
                 {result.data.originalUrl &&
                   result.data.finalUrl &&
@@ -309,7 +339,7 @@ export default function Home() {
                 <FeatureCard
                   icon={<Eye className="h-7 w-7" />}
                   title="One check, all platforms"
-                  description="Stop opening 5 tabs. See Facebook, Twitter, LinkedIn, and Discord previews side-by-side in seconds."
+                  description="Stop opening multiple tabs. See Facebook, Twitter, LinkedIn, Discord, and Slack previews side-by-side in seconds."
                 />
               </div>
               <div className="opacity-0 animate-fade-up stagger-2" style={{ animationFillMode: "forwards" }}>
@@ -352,7 +382,7 @@ export default function Home() {
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Paste your URL below. See previews on Facebook, Twitter, LinkedIn,
-              and Discord in 2 seconds.
+              Discord, and Slack in 2 seconds.
             </p>
             <div className="mx-auto mt-10 max-w-xl">
               <UrlInput onCheck={handleCheck} isLoading={isLoading} />

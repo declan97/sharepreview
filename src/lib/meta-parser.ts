@@ -125,6 +125,7 @@ export async function getImageDimensions(
 interface JavaScriptDetectionResult {
   isRequired: boolean;
   reason?: string;
+  framework?: string;  // Detected framework name
 }
 
 function detectJavaScriptRendering($: cheerio.Root, html: string): JavaScriptDetectionResult {
@@ -144,14 +145,27 @@ function detectJavaScriptRendering($: cheerio.Root, html: string): JavaScriptDet
   // Check for React root elements
   const hasReactRoot = $("#root").length > 0 || $("#__next").length > 0 || $("[data-reactroot]").length > 0;
 
-  // Check for Vue/Nuxt markers
-  const hasVueMarkers = $("#__nuxt").length > 0 || $("#app").length > 0 && $("[data-v-").length === 0;
+  // Check for Vue/Nuxt markers - fixed selector syntax
+  const hasNuxtMarker = $("#__nuxt").length > 0;
+  const hasVueApp = $("#app").length > 0;
+  // Look for Vue's scoped style attributes (data-v-xxxxxx)
+  const hasVueScopedStyles = $("[class]").toArray().some(el => {
+    const classList = $(el).attr("class") || "";
+    return /data-v-[a-f0-9]+/.test(classList);
+  }) || $("*").toArray().some(el => {
+    const attrs = (el as cheerio.TagElement).attribs || {};
+    return Object.keys(attrs).some(attr => attr.startsWith("data-v-"));
+  });
+  const hasVueMarkers = hasNuxtMarker || (hasVueApp && hasVueScopedStyles);
 
   // Check for Angular markers
   const hasAngularMarkers = $("app-root").length > 0 || $("[ng-app]").length > 0 || $("[ng-version]").length > 0;
 
   // Check for SvelteKit markers
   const hasSvelteMarkers = $("[data-sveltekit]").length > 0;
+
+  // Check for Remix markers
+  const hasRemixMarkers = html.includes("__remixContext") || html.includes("__remixManifest");
 
   // Check if body only contains script tags and empty divs
   const onlyScriptsAndDivs = bodyHtml.replace(/<script[\s\S]*?<\/script>/gi, "")
@@ -160,36 +174,58 @@ function detectJavaScriptRendering($: cheerio.Root, html: string): JavaScriptDet
     .trim().length < 50;
 
   // Check for JSON state hydration (common in SPAs)
-  const hasHydrationState = html.includes("__NEXT_DATA__") ||
-    html.includes("__NUXT__") ||
+  const hasNextData = html.includes("__NEXT_DATA__");
+  const hasNuxtData = html.includes("__NUXT__");
+  const hasHydrationState = hasNextData || hasNuxtData ||
     html.includes("window.__INITIAL_STATE__") ||
     html.includes("window.__PRELOADED_STATE__");
+
+  // Detect framework regardless of JS rendering requirement
+  let detectedFramework: string | undefined;
+  if (hasNextData || (hasReactRoot && $("#__next").length > 0)) {
+    detectedFramework = "nextjs";
+  } else if (hasNuxtData || hasNuxtMarker) {
+    detectedFramework = "nuxt";
+  } else if (hasRemixMarkers) {
+    detectedFramework = "remix";
+  } else if (hasReactRoot) {
+    detectedFramework = "react";
+  } else if (hasVueMarkers) {
+    detectedFramework = "vue";
+  } else if (hasAngularMarkers) {
+    detectedFramework = "angular";
+  } else if (hasSvelteMarkers) {
+    detectedFramework = "sveltekit";
+  }
 
   // Determine if JS is likely required
   if (hasMinimalContent && (hasReactRoot || hasVueMarkers || hasAngularMarkers || hasSvelteMarkers)) {
     let framework = "JavaScript";
-    if (hasReactRoot) framework = html.includes("__NEXT_DATA__") ? "Next.js" : "React";
-    else if (hasVueMarkers) framework = html.includes("__NUXT__") ? "Nuxt" : "Vue";
+    if (hasReactRoot) framework = hasNextData ? "Next.js" : "React";
+    else if (hasVueMarkers) framework = hasNuxtData ? "Nuxt" : "Vue";
     else if (hasAngularMarkers) framework = "Angular";
     else if (hasSvelteMarkers) framework = "SvelteKit";
 
     return {
       isRequired: true,
-      reason: `This appears to be a ${framework} application. Meta tags may be rendered client-side, which social platforms cannot read.`
+      reason: `This appears to be a ${framework} application. Meta tags may be rendered client-side, which social platforms cannot read.`,
+      framework: detectedFramework,
     };
   }
 
   if (hasMinimalContent && onlyScriptsAndDivs) {
     return {
       isRequired: true,
-      reason: "Page body is mostly empty with JavaScript. Content appears to be rendered client-side, which social platforms cannot read."
+      reason: "Page body is mostly empty with JavaScript. Content appears to be rendered client-side, which social platforms cannot read.",
+      framework: detectedFramework,
     };
   }
 
   if (hasNoscriptWarning && hasMinimalContent) {
     return {
       isRequired: true,
-      reason: "This site indicates JavaScript is required. Meta tags may not be visible to social platform crawlers."
+      reason: "This site indicates JavaScript is required. Meta tags may not be visible to social platform crawlers.",
+      framework: detectedFramework,
     };
   }
 
@@ -197,11 +233,12 @@ function detectJavaScriptRendering($: cheerio.Root, html: string): JavaScriptDet
   if (hasHydrationState && !hasMinimalContent) {
     return {
       isRequired: false,
-      reason: undefined // SSR is fine, no warning needed
+      reason: undefined, // SSR is fine, no warning needed
+      framework: detectedFramework,
     };
   }
 
-  return { isRequired: false };
+  return { isRequired: false, framework: detectedFramework };
 }
 
 export async function parseMetaTags(url: string): Promise<ParseResult> {
@@ -315,6 +352,7 @@ export async function parseMetaTags(url: string): Promise<ParseResult> {
       redirectCount: response.url !== originalUrl ? redirectCount : 0,
       isJavaScriptRequired: jsDetection.isRequired,
       jsRenderingReason: jsDetection.reason,
+      detectedFramework: jsDetection.framework,
     };
 
     // Open Graph tags
@@ -348,11 +386,31 @@ export async function parseMetaTags(url: string): Promise<ParseResult> {
       $('meta[property="og:locale"]').attr("content") ||
       undefined;
 
-    // Image dimensions from meta tags
+    // Image dimensions from meta tags (declared dimensions)
     const imageWidth = $('meta[property="og:image:width"]').attr("content");
     const imageHeight = $('meta[property="og:image:height"]').attr("content");
-    if (imageWidth) meta.imageWidth = parseInt(imageWidth, 10);
-    if (imageHeight) meta.imageHeight = parseInt(imageHeight, 10);
+    if (imageWidth) {
+      const parsed = parseInt(imageWidth, 10);
+      if (!isNaN(parsed)) {
+        meta.declaredImageWidth = parsed;
+        meta.imageWidth = parsed;  // Start with declared, may be overwritten by actual
+      }
+    }
+    if (imageHeight) {
+      const parsed = parseInt(imageHeight, 10);
+      if (!isNaN(parsed)) {
+        meta.declaredImageHeight = parsed;
+        meta.imageHeight = parsed;  // Start with declared, may be overwritten by actual
+      }
+    }
+
+    // Robots meta tag
+    meta.robotsMeta = $('meta[name="robots"]').attr("content") || undefined;
+
+    // Canonical URL
+    meta.canonicalUrl = $('link[rel="canonical"]').attr("href") ||
+      $('meta[property="og:url"]').attr("content") ||
+      undefined;
 
     // Twitter tags
     meta.twitterCard =
@@ -411,10 +469,13 @@ export async function parseMetaTags(url: string): Promise<ParseResult> {
           // Validate image URL is accessible
           meta.imageStatus = await validateImageUrl(meta.image!);
 
-          // If image is valid and we don't have dimensions from meta tags, get them
-          if (meta.imageStatus.valid && (!meta.imageWidth || !meta.imageHeight)) {
+          // Always try to get actual dimensions for comparison
+          if (meta.imageStatus.valid) {
             const dimensions = await getImageDimensions(meta.image!);
             if (dimensions) {
+              meta.actualImageWidth = dimensions.width;
+              meta.actualImageHeight = dimensions.height;
+              // Use actual dimensions as primary (more accurate)
               meta.imageWidth = dimensions.width;
               meta.imageHeight = dimensions.height;
             }
