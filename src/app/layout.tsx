@@ -76,13 +76,15 @@ export const metadata: Metadata = {
   },
 };
 
+const baseUrl = (process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app").trim();
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "ShareLint",
   description:
     "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them.",
-  url: process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app",
+  url: baseUrl,
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Web",
   offers: {

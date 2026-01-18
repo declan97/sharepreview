@@ -7,7 +7,7 @@ export const SEO = {
   siteName: "ShareLint",
   // Use sharepreview.vercel.app until sharelint.com domain is configured
   // Then set NEXT_PUBLIC_APP_URL=https://sharelint.com in Vercel
-  baseUrl: process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app",
+  baseUrl: (process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app").trim(),
   defaultTitle: "ShareLint - Social Media Link Preview Checker",
   defaultDescription:
     "Check how your links look on Facebook, Twitter, LinkedIn, and Discord before sharing. Fix broken preview images, titles, and descriptions instantly.",
