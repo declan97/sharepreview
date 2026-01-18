@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PlatformLandingPage } from "@/components/platform-landing";
 
 export const metadata: Metadata = {
-  title: "Twitter Card Validator - Free Twitter/X Preview Checker | ShareLint",
+  title: "Twitter Card Validator - Free Twitter/X Preview Checker",
   description:
     "Free Twitter card validator since Twitter removed theirs. Check how your links appear on Twitter/X. Test Twitter cards, preview images, and meta tags instantly.",
   keywords: [

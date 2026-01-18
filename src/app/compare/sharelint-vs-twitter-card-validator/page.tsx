@@ -4,7 +4,7 @@ import { Check, X, ArrowRight, AlertTriangle } from "lucide-react";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "ShareLint vs Twitter Card Validator - Free Alternative | ShareLint",
+  title: "ShareLint vs Twitter Card Validator - Free Alternative",
   description:
     "Twitter Card Validator was discontinued. ShareLint is the free alternative for testing Twitter/X cards. Compare features and start testing your Twitter cards instantly.",
   keywords: [

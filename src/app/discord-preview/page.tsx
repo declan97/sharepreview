@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PlatformLandingPage } from "@/components/platform-landing";
 
 export const metadata: Metadata = {
-  title: "Discord Embed Preview Checker - Free Discord Link Tester | ShareLint",
+  title: "Discord Embed Preview Checker - Free Discord Link Tester",
   description:
     "Check how your links will appear when shared on Discord. Free Discord embed preview checker tests your images, titles, and theme colors before sharing.",
   keywords: [

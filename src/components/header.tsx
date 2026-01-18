@@ -26,7 +26,7 @@ export function Header() {
               <LogoIcon className="h-5 w-5" />
             </div>
             <span className="text-xl font-semibold tracking-tight">
-              Share<span className="text-primary">Preview</span>
+              Share<span className="text-primary">Lint</span>
             </span>
           </Link>
 
