@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     title: "Twitter Card Not Working? Fix It in 5 Minutes",
     description:
       "Fix your Twitter/X card preview issues fast. Step-by-step solutions that actually work.",
-    url: "https://sharelint.com/fix/twitter-card-not-working",
+    url: "https://sharepreview.vercel.app/fix/twitter-card-not-working",
   },
   alternates: {
-    canonical: "https://sharelint.com/fix/twitter-card-not-working",
+    canonical: "https://sharepreview.vercel.app/fix/twitter-card-not-working",
   },
 };
 

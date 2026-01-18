@@ -17,7 +17,7 @@ const defaultDemoData: DemoData = {
   description:
     "See how your links appear on Facebook, Twitter, LinkedIn, and Discord before you share. Fix broken previews in seconds.",
   image: "/og-image.png",
-  url: "https://sharelint.com",
+  url: "https://sharepreview.vercel.app",
   siteName: "ShareLint",
 };
 

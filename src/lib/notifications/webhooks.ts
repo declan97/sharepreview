@@ -1,6 +1,6 @@
 import type { Monitor, MonitorCheck, Alert } from "@prisma/client";
 
-const DASHBOARD_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.com";
+const DASHBOARD_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app";
 
 interface WebhookPayload {
   monitor: Monitor;

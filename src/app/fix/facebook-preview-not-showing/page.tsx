@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     title: "Facebook Preview Not Showing? Here's How to Fix It",
     description:
       "Fix your Facebook link preview in minutes. Step-by-step solutions for missing images, titles, and descriptions.",
-    url: "https://sharelint.com/fix/facebook-preview-not-showing",
+    url: "https://sharepreview.vercel.app/fix/facebook-preview-not-showing",
   },
   alternates: {
-    canonical: "https://sharelint.com/fix/facebook-preview-not-showing",
+    canonical: "https://sharepreview.vercel.app/fix/facebook-preview-not-showing",
   },
 };
 

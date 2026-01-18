@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "ShareLint privacy policy - how we collect, use, and protect your data.",
   alternates: {
-    canonical: "https://sharelint.com/privacy",
+    canonical: "https://sharepreview.vercel.app/privacy",
   },
 };
 

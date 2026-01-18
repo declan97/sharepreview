@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     title: "OG Image Size Guide 2024 - Perfect Dimensions for Every Platform",
     description:
       "Get the exact og:image dimensions for Facebook, Twitter, LinkedIn, and Discord. Updated for 2024.",
-    url: "https://sharelint.com/guides/og-image-size",
+    url: "https://sharepreview.vercel.app/guides/og-image-size",
   },
   alternates: {
-    canonical: "https://sharelint.com/guides/og-image-size",
+    canonical: "https://sharepreview.vercel.app/guides/og-image-size",
   },
 };
 
@@ -126,7 +126,7 @@ const jsonLd = {
   publisher: {
     "@type": "Organization",
     name: "ShareLint",
-    url: "https://sharelint.com",
+    url: "https://sharepreview.vercel.app",
   },
   datePublished: "2024-01-01",
   dateModified: new Date().toISOString().split("T")[0],

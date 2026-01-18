@@ -4,7 +4,7 @@ import { getAllGuideSlugs } from "@/content/guides/data";
 import { getAllComparisonSlugs } from "@/content/comparisons/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.com";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app";
 
   // Static fix page slugs (have their own static pages)
   const staticFixSlugs = ["facebook-preview-not-showing", "twitter-card-not-working"];

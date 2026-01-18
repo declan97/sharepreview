@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Simple, transparent pricing. Start free with 10 checks per day, upgrade to Pro for unlimited checks. Monthly or annual billing available.",
   alternates: {
-    canonical: "https://sharelint.com/pricing",
+    canonical: "https://sharepreview.vercel.app/pricing",
   },
   openGraph: {
     title: "Pricing | ShareLint",

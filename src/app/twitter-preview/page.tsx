@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     title: "Twitter Card Validator - Free Alternative",
     description:
       "Free Twitter card validator since Twitter removed theirs. Check how your links appear on Twitter/X instantly.",
-    url: "https://sharelint.com/twitter-preview",
+    url: "https://sharepreview.vercel.app/twitter-preview",
   },
   alternates: {
-    canonical: "https://sharelint.com/twitter-preview",
+    canonical: "https://sharepreview.vercel.app/twitter-preview",
   },
 };
 

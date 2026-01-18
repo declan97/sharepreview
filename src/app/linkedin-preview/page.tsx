@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     title: "LinkedIn Post Preview Checker",
     description:
       "Check how your links will appear when shared on LinkedIn. Free preview checker for professionals.",
-    url: "https://sharelint.com/linkedin-preview",
+    url: "https://sharepreview.vercel.app/linkedin-preview",
   },
   alternates: {
-    canonical: "https://sharelint.com/linkedin-preview",
+    canonical: "https://sharepreview.vercel.app/linkedin-preview",
   },
 };
 

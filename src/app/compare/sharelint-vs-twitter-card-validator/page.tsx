@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     title: "ShareLint vs Twitter Card Validator",
     description:
       "Twitter Card Validator was discontinued. Compare with ShareLint, the free alternative.",
-    url: "https://sharelint.com/compare/sharelint-vs-twitter-card-validator",
+    url: "https://sharepreview.vercel.app/compare/sharelint-vs-twitter-card-validator",
   },
   alternates: {
-    canonical: "https://sharelint.com/compare/sharelint-vs-twitter-card-validator",
+    canonical: "https://sharepreview.vercel.app/compare/sharelint-vs-twitter-card-validator",
   },
 };
 

@@ -35,14 +35,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "ShareLint" }],
   creator: "ShareLint",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app"),
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.vercel.app",
+    url: process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app",
     siteName: "ShareLint",
     title: "ShareLint - Social Media Link Preview Checker",
     description:
@@ -82,7 +82,7 @@ const jsonLd = {
   name: "ShareLint",
   description:
     "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them.",
-  url: process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.vercel.app",
+  url: process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app",
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Web",
   offers: {

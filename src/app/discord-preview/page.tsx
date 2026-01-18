@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     title: "Discord Embed Preview Checker",
     description:
       "Check how your links will appear when shared on Discord. Free embed preview tester.",
-    url: "https://sharelint.com/discord-preview",
+    url: "https://sharepreview.vercel.app/discord-preview",
   },
   alternates: {
-    canonical: "https://sharelint.com/discord-preview",
+    canonical: "https://sharepreview.vercel.app/discord-preview",
   },
 };
 

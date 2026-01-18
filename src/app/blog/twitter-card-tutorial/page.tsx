@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "article",
   },
   alternates: {
-    canonical: "https://sharelint.com/blog/twitter-card-tutorial",
+    canonical: "https://sharepreview.vercel.app/blog/twitter-card-tutorial",
   },
 };
 

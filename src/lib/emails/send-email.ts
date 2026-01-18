@@ -10,7 +10,7 @@ interface SendAlertEmailParams {
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const FROM_EMAIL = process.env.FROM_EMAIL || "alerts@sharelint.com";
-const DASHBOARD_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sharelint.com";
+const DASHBOARD_URL = process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app";
 
 export async function sendAlertEmail(params: SendAlertEmailParams): Promise<{ success: boolean; error?: string }> {
   const { to, monitor, check, alert } = params;

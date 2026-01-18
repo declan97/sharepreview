@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description: "ShareLint terms of service - the rules and guidelines for using our service.",
   alternates: {
-    canonical: "https://sharelint.com/terms",
+    canonical: "https://sharepreview.vercel.app/terms",
   },
 };
 

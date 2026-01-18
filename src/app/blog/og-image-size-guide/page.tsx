@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "article",
   },
   alternates: {
-    canonical: "https://sharelint.com/blog/og-image-size-guide",
+    canonical: "https://sharepreview.vercel.app/blog/og-image-size-guide",
   },
 };
 

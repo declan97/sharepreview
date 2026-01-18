@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     title: "Facebook Link Preview Checker",
     description:
       "Check how your links will appear when shared on Facebook. See the preview before you post.",
-    url: "https://sharelint.com/facebook-preview",
+    url: "https://sharepreview.vercel.app/facebook-preview",
   },
   alternates: {
-    canonical: "https://sharelint.com/facebook-preview",
+    canonical: "https://sharepreview.vercel.app/facebook-preview",
   },
 };
 

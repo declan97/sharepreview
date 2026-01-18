@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     type: "article",
   },
   alternates: {
-    canonical: "https://sharelint.com/blog/fix-facebook-preview",
+    canonical: "https://sharepreview.vercel.app/blog/fix-facebook-preview",
   },
 };
 
