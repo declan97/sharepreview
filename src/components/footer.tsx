@@ -133,14 +133,9 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-16 border-t pt-8">
+          <p className="text-center text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} ShareLint. All rights reserved.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            Built with{" "}
-            <span className="text-primary">Next.js</span> &{" "}
-            <span className="text-primary">Tailwind CSS</span>
           </p>
         </div>
       </div>
