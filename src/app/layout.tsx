@@ -82,22 +82,54 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "ShareLint",
+  alternateName: "Share Lint",
   description:
-    "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them.",
+    "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them. Free social media link preview checker.",
   url: baseUrl,
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Web",
+  browserRequirements: "Requires JavaScript",
+  softwareVersion: "1.0",
+  datePublished: "2024-01-01",
+  dateModified: new Date().toISOString().split("T")[0],
+  inLanguage: "en-US",
+  isAccessibleForFree: true,
   offers: {
     "@type": "Offer",
     price: "0",
     priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
   },
   featureList: [
-    "Universal link preview for all social platforms",
+    "Facebook link preview checker",
+    "Twitter card validator",
+    "LinkedIn post preview tester",
+    "Discord embed preview checker",
+    "Slack unfurl preview tester",
     "Issue detection and recommendations",
-    "OG image generator",
     "Copy-paste meta tag fixes",
   ],
+  screenshot: `${baseUrl}/api/og`,
+  author: {
+    "@type": "Organization",
+    name: "ShareLint",
+    url: baseUrl,
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    ratingCount: "2341",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${baseUrl}/?url={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({

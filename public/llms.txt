@@ -1,0 +1,76 @@
+# ShareLint - Social Media Link Preview Checker
+
+> Check how URLs appear on Facebook, Twitter, LinkedIn, Discord, and Slack before sharing. Fix broken previews in seconds.
+
+ShareLint is a free tool that validates Open Graph and Twitter Card meta tags, showing exactly how your links will appear when shared on social media platforms.
+
+## Core Tools
+
+- /facebook-preview - Facebook link preview checker with OG tag validation
+- /twitter-preview - Twitter card validator (free alternative since Twitter removed theirs)
+- /linkedin-preview - LinkedIn post preview tester for professionals
+- /discord-preview - Discord embed preview checker with theme color support
+- /slack-preview - Slack unfurl preview tester
+
+## Platform Specifications
+
+### Facebook
+- Image size: 1200x630 pixels (1.91:1 ratio)
+- Title: 60 characters max
+- Description: 65 characters shown
+
+### Twitter/X
+- Image size: 1200x628 pixels for summary_large_image
+- Image size: 144x144 to 4096x4096 for summary cards
+- Title: 70 characters max
+- Card types: summary, summary_large_image, player, app
+
+### LinkedIn
+- Image size: 1200x627 pixels (1.91:1 ratio)
+- Title: 70 characters shown
+- Uses Open Graph meta tags
+
+### Discord
+- Image size: 1200x630 pixels for large embeds
+- Supports theme-color meta tag for embed sidebar color
+- Max file size: 8MB
+
+### Slack
+- Image size: 1200x630 pixels recommended
+- Minimum: 250x250 pixels
+- Uses Open Graph meta tags
+
+## Documentation
+
+- /guides/og-image-size - Complete guide to OG image dimensions for all platforms
+- /guides/twitter-card-size - Twitter card image size specifications
+- /guides/linkedin-meta-tags - LinkedIn Open Graph tag guide
+- /guides/discord-embed-guide - Discord embed customization
+
+## Troubleshooting Guides
+
+- /fix/facebook-preview-not-showing - Fix missing Facebook link previews
+- /fix/twitter-card-not-working - Fix Twitter card issues
+- /fix/missing-og-image - Fix missing Open Graph images
+- /fix/og-image-wrong-size - Fix image dimension and cropping issues
+- /fix/linkedin-preview-not-updating - Clear LinkedIn cache
+- /fix/discord-embed-not-showing - Fix Discord embed problems
+
+## Common Questions
+
+Q: What is the best OG image size?
+A: 1200x630 pixels works on all platforms without cropping.
+
+Q: How do I clear Facebook's preview cache?
+A: Use Facebook's Sharing Debugger tool to scrape your URL again.
+
+Q: Why isn't my Twitter card showing?
+A: Twitter (now X) requires twitter:card meta tag. Use ShareLint's free validator to diagnose issues.
+
+Q: How do I customize Discord embed colors?
+A: Add <meta name="theme-color" content="#HEX"> to your page's head.
+
+## Contact
+
+Website: https://sharelint.com
+Twitter: @sharelint

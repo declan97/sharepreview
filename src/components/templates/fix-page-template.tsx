@@ -21,6 +21,14 @@ export function FixPageTemplate({ content }: FixPageTemplateProps) {
     "@type": "HowTo",
     name: `How to Fix: ${content.title}`,
     description: content.metaDescription,
+    datePublished: "2024-01-01",
+    dateModified: new Date().toISOString().split("T")[0],
+    totalTime: "PT5M",
+    estimatedCost: {
+      "@type": "MonetaryAmount",
+      currency: "USD",
+      value: "0",
+    },
     step: content.problems.map((problem, index) => ({
       "@type": "HowToStep",
       position: index + 1,

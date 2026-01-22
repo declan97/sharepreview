@@ -10,6 +10,36 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/api/", "/dashboard/"],
       },
+      {
+        userAgent: "GPTBot",
+        allow: "/",
+        disallow: ["/api/", "/dashboard/"],
+      },
+      {
+        userAgent: "ChatGPT-User",
+        allow: "/",
+        disallow: ["/api/", "/dashboard/"],
+      },
+      {
+        userAgent: "PerplexityBot",
+        allow: "/",
+        disallow: ["/api/", "/dashboard/"],
+      },
+      {
+        userAgent: "ClaudeBot",
+        allow: "/",
+        disallow: ["/api/", "/dashboard/"],
+      },
+      {
+        userAgent: "anthropic-ai",
+        allow: "/",
+        disallow: ["/api/", "/dashboard/"],
+      },
+      {
+        userAgent: "Bytespider",
+        allow: "/",
+        disallow: ["/api/", "/dashboard/"],
+      },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
   };

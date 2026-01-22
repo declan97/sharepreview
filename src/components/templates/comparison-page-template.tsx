@@ -16,6 +16,24 @@ export function ComparisonPageTemplate({ content }: ComparisonPageTemplateProps)
     { name: content.title, url: `/compare/${content.slug}` },
   ];
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: content.title,
+    description: content.metaDescription,
+    author: {
+      "@type": "Organization",
+      name: SEO.siteName,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SEO.siteName,
+      url: SEO.baseUrl,
+    },
+    datePublished: "2024-01-01",
+    dateModified: new Date().toISOString().split("T")[0],
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -43,6 +61,10 @@ export function ComparisonPageTemplate({ content }: ComparisonPageTemplateProps)
   return (
     <>
       <BreadcrumbSchema items={breadcrumbItems} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

@@ -3,7 +3,7 @@
 import { type MetaData, type ValidationIssue, getIssuesByPlatform } from "@/lib/validators";
 import { type PlatformSpec } from "@/lib/platform-specs";
 import { truncate, getDomain } from "@/lib/utils";
-import { AlertCircle, AlertTriangle, Info, ExternalLink } from "lucide-react";
+import { AlertCircle, AlertTriangle, Info, ExternalLink, MonitorPlay } from "lucide-react";
 
 interface PreviewCardProps {
   meta: MetaData;
@@ -36,38 +36,48 @@ export function PreviewCard({ meta, platform, issues }: PreviewCardProps) {
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border bg-card">
-      <div className="flex items-center justify-between border-b px-4 py-3">
-        <h3 className="font-semibold">{platform.name}</h3>
+    <div className="group overflow-hidden rounded-lg border bg-card transition-all hover:border-primary/20 hover:shadow-sm">
+      <div className="flex items-center justify-between border-b px-4 py-3 bg-muted/30">
+        <div className="flex items-center gap-2">
+          <h3 className="font-medium text-sm">{platform.name}</h3>
+          <span className="rounded-full bg-muted px-1.5 py-0.5 text-[10px] uppercase text-muted-foreground border">
+            Simulated
+          </span>
+        </div>
         {platformIssues.length > 0 && (
-          <div className="flex items-center gap-1 text-sm">
+          <div className="flex items-center gap-2 text-xs">
             {platformIssues.filter((i) => i.type === "error").length > 0 && (
-              <span className="flex items-center gap-1 text-destructive">
-                <AlertCircle className="h-4 w-4" />
+              <span className="flex items-center gap-1 text-destructive font-medium">
+                <AlertCircle className="h-3.5 w-3.5" />
                 {platformIssues.filter((i) => i.type === "error").length}
               </span>
             )}
             {platformIssues.filter((i) => i.type === "warning").length > 0 && (
-              <span className="ml-2 flex items-center gap-1 text-warning">
-                <AlertTriangle className="h-4 w-4" />
+              <span className="flex items-center gap-1 text-warning font-medium">
+                <AlertTriangle className="h-3.5 w-3.5" />
                 {platformIssues.filter((i) => i.type === "warning").length}
               </span>
             )}
           </div>
         )}
       </div>
-      <div className="p-4">
+      
+      <div className="p-4 bg-muted/10">
         {renderPreview()}
       </div>
+
       {platformIssues.length > 0 && (
-        <div className="border-t bg-muted/50 px-4 py-3">
+        <div className="border-t bg-muted/30 px-4 py-3">
           <ul className="space-y-2">
             {platformIssues.map((issue, index) => (
-              <li key={index} className="flex items-start gap-2 text-sm">
-                {issue.type === "error" && <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />}
-                {issue.type === "warning" && <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-warning" />}
-                {issue.type === "info" && <Info className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />}
-                <span className="text-muted-foreground">{issue.message}</span>
+              <li key={index} className="flex items-start gap-2 text-xs">
+                {issue.type === "error" && <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-destructive" />}
+                {issue.type === "warning" && <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-warning" />}
+                {issue.type === "info" && <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted-foreground" />}
+                <span className="text-muted-foreground leading-relaxed">
+                  <span className="font-semibold text-foreground">{issue.message}</span>
+                  {issue.suggestion && <span className="block mt-0.5 text-muted-foreground/80">{issue.suggestion}</span>}
+                </span>
               </li>
             ))}
           </ul>
@@ -88,28 +98,25 @@ interface PlatformPreviewProps {
 
 function FacebookPreview({ title, description, image, siteName, spec }: PlatformPreviewProps) {
   return (
-    <div
-      className="overflow-hidden rounded-lg border"
-      style={{ backgroundColor: spec.colors.card, borderColor: spec.colors.border }}
-    >
+    <div className="overflow-hidden rounded-lg border shadow-sm bg-white">
       {image ? (
-        <div className="aspect-[1.91/1] w-full overflow-hidden bg-gray-200">
+        <div className="aspect-[1.91/1] w-full overflow-hidden bg-gray-100">
           <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       ) : (
-        <div className="flex aspect-[1.91/1] w-full items-center justify-center bg-gray-200">
-          <span className="text-gray-400">No image</span>
+        <div className="flex aspect-[1.91/1] w-full items-center justify-center bg-gray-100 border-b">
+          <div className="flex flex-col items-center gap-2 text-gray-400">
+            <MonitorPlay className="h-8 w-8" />
+            <span className="text-xs">No image</span>
+          </div>
         </div>
       )}
-      <div className="p-3" style={{ backgroundColor: spec.colors.bg }}>
-        <p className="text-xs uppercase text-gray-500">{siteName}</p>
-        <h4
-          className="mt-1 font-semibold leading-tight"
-          style={{ color: spec.colors.text }}
-        >
+      <div className="p-3 bg-white">
+        <p className="text-[10px] uppercase text-gray-500 mb-0.5 font-sans">{siteName}</p>
+        <h4 className="font-semibold text-[16px] leading-[20px] text-[#050505] font-sans antialiased mb-1">
           {truncate(title, spec.titleMaxLength)}
         </h4>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="text-[14px] leading-[20px] text-[#65676B] font-sans line-clamp-1">
           {truncate(description, spec.descriptionMaxLength)}
         </p>
       </div>
@@ -119,30 +126,27 @@ function FacebookPreview({ title, description, image, siteName, spec }: Platform
 
 function TwitterPreview({ title, description, image, url, spec }: PlatformPreviewProps) {
   return (
-    <div
-      className="overflow-hidden rounded-2xl border"
-      style={{ backgroundColor: spec.colors.card, borderColor: spec.colors.border }}
-    >
+    <div className="overflow-hidden rounded-xl border border-[rgba(207,217,222,1)] bg-white">
       {image ? (
-        <div className="aspect-[1.91/1] w-full overflow-hidden">
+        <div className="aspect-[1.91/1] w-full overflow-hidden bg-gray-100 border-b border-[rgba(207,217,222,1)]">
           <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       ) : (
-        <div className="flex aspect-[1.91/1] w-full items-center justify-center bg-gray-800">
-          <span className="text-gray-500">No image</span>
+        <div className="flex aspect-[1.91/1] w-full items-center justify-center bg-gray-100 border-b border-[rgba(207,217,222,1)]">
+           <div className="flex flex-col items-center gap-2 text-gray-400">
+            <MonitorPlay className="h-8 w-8" />
+            <span className="text-xs">No image</span>
+          </div>
         </div>
       )}
       <div className="p-3">
-        <h4
-          className="font-normal leading-tight"
-          style={{ color: spec.colors.text }}
-        >
+        <h4 className="font-sans text-[15px] font-medium leading-5 text-[#0f1419] mb-0.5">
           {truncate(title, spec.titleMaxLength)}
         </h4>
-        <p className="mt-1 text-sm" style={{ color: "#71767b" }}>
+        <p className="font-sans text-[15px] leading-5 text-[#536471] mb-1">
           {truncate(description, 100)}
         </p>
-        <p className="mt-1 flex items-center gap-1 text-sm" style={{ color: "#71767b" }}>
+        <p className="flex items-center gap-1 font-sans text-[15px] text-[#536471]">
           <ExternalLink className="h-3 w-3" />
           {getDomain(url || "")}
         </p>
@@ -153,34 +157,27 @@ function TwitterPreview({ title, description, image, url, spec }: PlatformPrevie
 
 function LinkedInPreview({ title, description, image, siteName, spec }: PlatformPreviewProps) {
   return (
-    <div
-      className="overflow-hidden rounded-lg border"
-      style={{ backgroundColor: spec.colors.card, borderColor: spec.colors.border }}
-    >
+    <div className="overflow-hidden rounded-lg border shadow-sm bg-white">
       {image ? (
-        <div className="aspect-[1.91/1] w-full overflow-hidden bg-gray-200">
+        <div className="aspect-[1.91/1] w-full overflow-hidden bg-gray-100 border-b">
           <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       ) : (
-        <div className="flex aspect-[1.91/1] w-full items-center justify-center bg-gray-200">
-          <span className="text-gray-400">No image</span>
+        <div className="flex aspect-[1.91/1] w-full items-center justify-center bg-gray-100 border-b">
+           <div className="flex flex-col items-center gap-2 text-gray-400">
+            <MonitorPlay className="h-8 w-8" />
+            <span className="text-xs">No image</span>
+          </div>
         </div>
       )}
-      <div className="p-3">
-        <h4
-          className="font-semibold leading-tight"
-          style={{ color: spec.colors.text }}
-        >
+      <div className="p-3 bg-white">
+        <h4 className="font-sans text-[14px] font-semibold leading-[20px] text-[rgba(0,0,0,0.9)] mb-1">
           {truncate(title, spec.titleMaxLength)}
         </h4>
-        <div className="mt-1 flex items-center gap-1.5">
-          <div
-            className="flex h-4 w-4 items-center justify-center rounded text-[10px] font-bold text-white"
-            style={{ backgroundColor: spec.colors.link }}
-          >
-            {siteName?.charAt(0)?.toUpperCase() || "?"}
-          </div>
-          <p className="text-xs text-gray-500">{siteName}</p>
+        <div className="flex items-center gap-1 text-[12px] text-[rgba(0,0,0,0.6)]">
+           <span className="font-sans">{getDomain(siteName || "")}</span>
+           <span>•</span>
+           <span className="font-sans">1m reading time</span>
         </div>
       </div>
     </div>
@@ -189,26 +186,20 @@ function LinkedInPreview({ title, description, image, siteName, spec }: Platform
 
 function DiscordPreview({ title, description, image, siteName, spec }: PlatformPreviewProps) {
   return (
-    <div
-      className="flex overflow-hidden rounded border-l-4 border-l-primary"
-      style={{ backgroundColor: spec.colors.card }}
-    >
-      <div className="flex-1 p-4">
-        <p className="text-xs font-medium" style={{ color: spec.colors.text }}>
+    <div className="flex rounded-md border-l-[3px] border-[#E3E5E8] bg-[#F2F3F5] p-3 max-w-[432px]">
+      <div className="flex-1 min-w-0 pr-4">
+        <p className="text-[12px] leading-[1.375rem] text-[#4F545C] font-sans mb-1">
           {siteName}
         </p>
-        <h4
-          className="mt-1 font-semibold leading-tight"
-          style={{ color: spec.colors.link }}
-        >
+        <h4 className="text-[16px] font-semibold leading-[1.375rem] text-[#0690FA] hover:underline cursor-pointer font-sans mb-2">
           {truncate(title, spec.titleMaxLength)}
         </h4>
-        <p className="mt-2 text-sm" style={{ color: spec.colors.text }}>
+        <p className="text-[14px] leading-[1.125rem] text-[#2E3338] font-sans mb-2">
           {truncate(description, spec.descriptionMaxLength)}
         </p>
       </div>
       {image && (
-        <div className="m-4 h-20 w-20 shrink-0 overflow-hidden rounded">
+        <div className="h-[80px] w-[80px] shrink-0 overflow-hidden rounded-[4px] self-start">
           <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       )}
@@ -218,37 +209,27 @@ function DiscordPreview({ title, description, image, siteName, spec }: PlatformP
 
 function SlackPreview({ title, description, image, siteName, url, spec }: PlatformPreviewProps) {
   return (
-    <div
-      className="overflow-hidden rounded border-l-4"
-      style={{ backgroundColor: spec.colors.card, borderLeftColor: "#36c5f0" }}
-    >
-      <div className="p-3">
-        <div className="flex items-center gap-2">
-          <div className="h-4 w-4 rounded bg-gray-600" />
-          <p className="text-xs font-bold" style={{ color: spec.colors.text }}>
-            {siteName}
-          </p>
+    <div className="flex gap-3 pl-3 border-l-4 border-[#E8E8E8]">
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 mb-1">
+          <div className="h-3.5 w-3.5 rounded bg-gray-200" />
+          <span className="font-bold text-[15px] leading-[22px] text-[#1d1c1d]">{siteName}</span>
         </div>
-        <h4
-          className="mt-2 font-bold leading-tight"
-          style={{ color: spec.colors.link }}
-        >
-          {truncate(title, spec.titleMaxLength)}
-        </h4>
-        <p className="mt-1 text-sm" style={{ color: spec.colors.text }}>
-          {truncate(description, spec.descriptionMaxLength)}
-        </p>
-        {url && (
-          <p className="mt-1 text-xs" style={{ color: "#9a9b9c" }}>
-            {getDomain(url)}
-          </p>
-        )}
-      </div>
-      {image && (
-        <div className="mx-3 mb-3">
-          <div className="aspect-[1.91/1] w-full max-w-[360px] overflow-hidden rounded">
-            <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+         <h4 className="text-[15px] font-bold leading-[22px] text-[#1264a3] hover:underline cursor-pointer mb-1">
+            {truncate(title, spec.titleMaxLength)}
+         </h4>
+         <p className="text-[15px] leading-[22px] text-[#1d1c1d] mb-1">
+            {truncate(description, spec.descriptionMaxLength)}
+         </p>
+         {image && (
+          <div className="mt-2 text-[15px] leading-[22px] text-[#1264a3] opacity-50 italic">
+            [Linked image]
           </div>
+         )}
+      </div>
+       {image && (
+        <div className="mt-1 h-[80px] w-[80px] shrink-0 overflow-hidden rounded-lg border border-gray-200">
+           <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       )}
     </div>
@@ -257,16 +238,16 @@ function SlackPreview({ title, description, image, siteName, url, spec }: Platfo
 
 function GenericPreview({ title, description, image, siteName, spec }: PlatformPreviewProps) {
   return (
-    <div className="overflow-hidden rounded-lg border" style={{ borderColor: spec.colors.border }}>
+    <div className="overflow-hidden rounded-lg border bg-white shadow-sm">
       {image && (
-        <div className="aspect-[1.91/1] w-full overflow-hidden bg-gray-200">
+        <div className="aspect-[1.91/1] w-full overflow-hidden bg-gray-100 border-b">
           <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </div>
       )}
       <div className="p-3">
-        <p className="text-xs text-gray-500">{siteName}</p>
-        <h4 className="mt-1 font-semibold">{truncate(title, spec.titleMaxLength)}</h4>
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="text-xs text-gray-500 mb-1">{siteName}</p>
+        <h4 className="font-semibold text-sm mb-1">{truncate(title, spec.titleMaxLength)}</h4>
+        <p className="text-xs text-gray-500 line-clamp-2">
           {truncate(description, spec.descriptionMaxLength)}
         </p>
       </div>
