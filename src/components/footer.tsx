@@ -25,32 +25,32 @@ const companyLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t bg-muted/30">
-      {/* Decorative gradient */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+    <footer className="relative border-t border-border bg-muted/20">
+      {/* Decorative gradient line */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 lg:py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="group inline-flex items-center gap-2.5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm transition-all duration-200 group-hover:shadow-md">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground transition-all duration-200 group-hover:shadow-[0_0_0_4px_rgba(13,148,136,0.1)]">
                 <LogoIcon className="h-6 w-6" />
               </div>
-              <span className="text-xl font-semibold tracking-tight">
-                Share<span className="text-primary">Lint</span>
+              <span className="text-xl font-bold tracking-tight">
+                Share<span className="text-primary">Preview</span>
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
               See exactly how your links look on social media before you share them.
-              Check your link preview in 2 seconds.
+              Free link preview checker for developers.
             </p>
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-6 flex items-center gap-3">
               <a
-                href="https://twitter.com/sharelint"
+                href="https://twitter.com/sharepreview"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-all hover:border-primary/40 hover:text-foreground hover:shadow-sm"
                 aria-label="Twitter"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -58,10 +58,10 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://github.com/sharelint"
+                href="https://github.com/sharepreview"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-all hover:border-primary/40 hover:text-foreground hover:shadow-sm"
                 aria-label="GitHub"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -73,10 +73,10 @@ export function Footer() {
 
           {/* Tools Column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-4">
               Tools
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="space-y-3">
               {toolLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -84,7 +84,7 @@ export function Footer() {
                     className="group inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {link.label}
-                    <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
+                    <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </li>
               ))}
@@ -93,10 +93,10 @@ export function Footer() {
 
           {/* Resources Column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-4">
               Resources
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="space-y-3">
               {resourceLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -104,7 +104,7 @@ export function Footer() {
                     className="group inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {link.label}
-                    <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
+                    <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </li>
               ))}
@@ -113,10 +113,10 @@ export function Footer() {
 
           {/* Company Column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-4">
               Company
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -124,7 +124,7 @@ export function Footer() {
                     className="group inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {link.label}
-                    <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
+                    <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </li>
               ))}
@@ -133,9 +133,12 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 border-t pt-8">
-          <p className="text-center text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} ShareLint. All rights reserved.
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
+          <p className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} SharePreview. All rights reserved.
+          </p>
+          <p className="text-xs text-muted-foreground/60">
+            Made for developers who care about link previews
           </p>
         </div>
       </div>

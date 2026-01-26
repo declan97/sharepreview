@@ -24,8 +24,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles = cn(
-      "group relative inline-flex items-center justify-center font-medium",
-      "rounded-xl transition-all duration-200 ease-out",
+      "group relative inline-flex items-center justify-center font-semibold",
+      "rounded-lg transition-all duration-200 ease-out",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
       "disabled:pointer-events-none disabled:opacity-50",
       "active:scale-[0.98]"
@@ -34,19 +34,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const variants = {
       default: cn(
         "bg-primary text-primary-foreground",
-        "shadow-[0_1px_2px_rgba(0,0,0,0.1),0_4px_12px_rgba(249,115,22,0.2)]",
-        "hover:bg-primary-hover hover:shadow-[0_2px_4px_rgba(0,0,0,0.1),0_8px_24px_rgba(249,115,22,0.3)]",
-        "hover:-translate-y-0.5"
+        "shadow-[0_1px_2px_rgba(0,0,0,0.05),0_0_0_1px_rgba(13,148,136,0.1)]",
+        "hover:bg-primary-hover hover:shadow-[0_4px_12px_rgba(13,148,136,0.25)]",
+        "hover:-translate-y-px"
       ),
       secondary: cn(
         "bg-secondary text-secondary-foreground",
-        "border border-border",
-        "shadow-sm",
-        "hover:bg-muted hover:border-muted-foreground/20"
+        "shadow-[0_1px_2px_rgba(0,0,0,0.1)]",
+        "hover:bg-secondary/90 hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)]",
+        "hover:-translate-y-px"
       ),
       outline: cn(
-        "border-2 border-border bg-transparent",
-        "hover:bg-muted hover:border-primary/50",
+        "border-2 border-border bg-transparent text-foreground",
+        "hover:bg-muted hover:border-primary/40",
         "hover:shadow-sm"
       ),
       ghost: cn(
@@ -55,15 +55,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ),
       destructive: cn(
         "bg-destructive text-destructive-foreground",
-        "shadow-[0_1px_2px_rgba(0,0,0,0.1),0_4px_12px_rgba(220,38,38,0.2)]",
-        "hover:bg-destructive/90 hover:shadow-[0_2px_4px_rgba(0,0,0,0.1),0_8px_24px_rgba(220,38,38,0.3)]"
+        "shadow-[0_1px_2px_rgba(0,0,0,0.05)]",
+        "hover:bg-destructive/90 hover:shadow-[0_4px_12px_rgba(220,38,38,0.25)]",
+        "hover:-translate-y-px"
       ),
     };
 
     const sizes = {
-      default: "h-11 px-5 py-2.5 text-sm",
-      sm: "h-9 px-4 text-xs",
-      lg: "h-14 px-8 text-base",
+      default: "h-11 px-5 py-2.5 text-sm gap-2",
+      sm: "h-9 px-4 text-xs gap-1.5",
+      lg: "h-13 px-7 text-base gap-2.5",
       icon: "h-11 w-11",
     };
 
@@ -99,12 +100,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <span>Checking...</span>
           </span>
         ) : (
-          <>
-            {children}
-            {variant === "default" && (
-              <span className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/10 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-            )}
-          </>
+          children
         )}
       </button>
     );

@@ -38,8 +38,8 @@ function categorizeError(error: unknown, url: string): FetchErrorDetails {
 
     // SSL/TLS errors
     if (message.includes("ssl") || message.includes("tls") || message.includes("certificate") ||
-        message.includes("cert") || message.includes("unable to verify") || message.includes("self signed") ||
-        message.includes("eproto") || message.includes("depth zero")) {
+      message.includes("cert") || message.includes("unable to verify") || message.includes("self signed") ||
+      message.includes("eproto") || message.includes("depth zero")) {
       return { type: "ssl", message: "SSL certificate error. The site may have an invalid or expired certificate." };
     }
 
@@ -139,8 +139,8 @@ function detectJavaScriptRendering($: cheerio.Root, html: string): JavaScriptDet
   // Check for "noscript" tags that indicate JS is needed
   const hasNoscriptWarning = $("noscript").length > 0 &&
     ($("noscript").text().toLowerCase().includes("javascript") ||
-     $("noscript").text().toLowerCase().includes("enable") ||
-     $("noscript").text().toLowerCase().includes("browser"));
+      $("noscript").text().toLowerCase().includes("enable") ||
+      $("noscript").text().toLowerCase().includes("browser"));
 
   // Check for React root elements
   const hasReactRoot = $("#root").length > 0 || $("#__next").length > 0 || $("[data-reactroot]").length > 0;
@@ -199,6 +199,9 @@ function detectJavaScriptRendering($: cheerio.Root, html: string): JavaScriptDet
   }
 
   // Determine if JS is likely required
+  // Relaxed check: Only flag if we see typical SPA markers AND empty content.
+  // We removed the generic "onlyScriptsAndDivs" check as it flagged too many valid static sites.
+
   if (hasMinimalContent && (hasReactRoot || hasVueMarkers || hasAngularMarkers || hasSvelteMarkers)) {
     let framework = "JavaScript";
     if (hasReactRoot) framework = hasNextData ? "Next.js" : "React";
@@ -209,14 +212,6 @@ function detectJavaScriptRendering($: cheerio.Root, html: string): JavaScriptDet
     return {
       isRequired: true,
       reason: `This appears to be a ${framework} application. Meta tags may be rendered client-side, which social platforms cannot read.`,
-      framework: detectedFramework,
-    };
-  }
-
-  if (hasMinimalContent && onlyScriptsAndDivs) {
-    return {
-      isRequired: true,
-      reason: "Page body is mostly empty with JavaScript. Content appears to be rendered client-side, which social platforms cannot read.",
       framework: detectedFramework,
     };
   }
@@ -260,8 +255,10 @@ export async function parseMetaTags(url: string): Promise<ParseResult> {
       response = await fetch(url, {
         signal: controller.signal,
         headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; ShareLint/1.0; +https://sharelint.com)",
-          Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          // Use a standard browser UA to avoid WAF blocks
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+          Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+          "Accept-Language": "en-US,en;q=0.9",
         },
         redirect: "follow",
       });

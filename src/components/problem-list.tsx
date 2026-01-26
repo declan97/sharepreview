@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { AlertCircle, AlertTriangle, Info, Copy, Check, Code, Zap, Scissors } from "lucide-react";
 import { useState, useCallback, useMemo } from "react";
+import { ClearCacheGuide } from "@/components/clear-cache-guide";
 
 const FRAMEWORK_OPTIONS: { value: CodeFormat; label: string; framework?: string }[] = [
   { value: "html", label: "HTML" },
@@ -126,138 +127,140 @@ export function ProblemList({ issues, meta }: ProblemListProps) {
       )}
 
       {issueCount > 0 && (
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span className="flex items-center gap-2">
-              Issues Found
-              <span className="rounded-full bg-muted px-2 py-0.5 text-sm font-normal">
-                {issueCount}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                Issues Found
+                <span className="rounded-full bg-muted px-2 py-0.5 text-sm font-normal">
+                  {issueCount}
+                </span>
               </span>
-            </span>
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowCode(!showCode)}
-              >
-                <Code className="mr-2 h-4 w-4" />
-                {showCode ? "Hide Code" : "View Fix"}
-              </Button>
-              <Button variant="outline" size="sm" onClick={copyMetaTags}>
-                {copied ? (
-                  <>
-                    <Check className="mr-2 h-4 w-4" />
-                    Copied!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="mr-2 h-4 w-4" />
-                    Copy Tags
-                  </>
-                )}
-              </Button>
-            </div>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {errors.length > 0 && (
-            <div className="space-y-2">
-              <h4 className="flex items-center gap-2 text-sm font-semibold text-destructive">
-                <AlertCircle className="h-4 w-4" />
-                Critical Issues ({errors.length})
-              </h4>
-              <ul className="space-y-2 pl-6">
-                {errors.map((issue, index) => (
-                  <li key={index} className="text-sm">
-                    <p className="font-medium">{issue.message}</p>
-                    {issue.suggestion && (
-                      <p className="text-muted-foreground">{issue.suggestion}</p>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {warnings.length > 0 && (
-            <div className="space-y-2">
-              <h4 className="flex items-center gap-2 text-sm font-semibold text-warning">
-                <AlertTriangle className="h-4 w-4" />
-                Warnings ({warnings.length})
-              </h4>
-              <ul className="space-y-3 pl-6">
-                {warnings.map((issue, index) => (
-                  <li key={index} className="text-sm">
-                    <p className="font-medium">{issue.message}</p>
-                    {issue.suggestion && (
-                      <p className="text-muted-foreground">{issue.suggestion}</p>
-                    )}
-                    {issue.truncatedValue && (
-                      <TruncatedSuggestion text={issue.truncatedValue} />
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {infos.length > 0 && (
-            <div className="space-y-2">
-              <h4 className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
-                <Info className="h-4 w-4" />
-                Suggestions ({infos.length})
-              </h4>
-              <ul className="space-y-3 pl-6">
-                {infos.map((issue, index) => (
-                  <li key={index} className="text-sm">
-                    <p className="text-muted-foreground">{issue.message}</p>
-                    {issue.suggestion && (
-                      <p className="text-muted-foreground text-xs">{issue.suggestion}</p>
-                    )}
-                    {issue.truncatedValue && (
-                      <TruncatedSuggestion text={issue.truncatedValue} />
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {showCode && (
-            <div className="mt-4 space-y-3">
-              <div className="flex items-center justify-between">
-                <h4 className="text-sm font-semibold">Recommended Meta Tags</h4>
-                <div className="flex gap-1">
-                  {FRAMEWORK_OPTIONS.map((opt) => (
-                    <Button
-                      key={opt.value}
-                      variant={codeFormat === opt.value ? "default" : "ghost"}
-                      size="sm"
-                      className="h-7 px-2 text-xs"
-                      onClick={() => setCodeFormat(opt.value)}
-                    >
-                      {opt.label}
-                      {opt.framework === meta.detectedFramework && (
-                        <span className="ml-1 text-[10px] opacity-60">•</span>
-                      )}
-                    </Button>
-                  ))}
-                </div>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowCode(!showCode)}
+                >
+                  <Code className="mr-2 h-4 w-4" />
+                  {showCode ? "Hide Code" : "View Fix"}
+                </Button>
+                <Button variant="outline" size="sm" onClick={copyMetaTags}>
+                  {copied ? (
+                    <>
+                      <Check className="mr-2 h-4 w-4" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="mr-2 h-4 w-4" />
+                      Copy Tags
+                    </>
+                  )}
+                </Button>
               </div>
-              {meta.detectedFramework && codeFormat !== "html" && (
-                <p className="text-xs text-muted-foreground">
-                  Detected framework: {FRAMEWORK_OPTIONS.find(o => o.framework === meta.detectedFramework)?.label || meta.detectedFramework}
-                </p>
-              )}
-              <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
-                <code>{metaTagCode}</code>
-              </pre>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {errors.length > 0 && (
+              <div className="space-y-2">
+                <h4 className="flex items-center gap-2 text-sm font-semibold text-destructive">
+                  <AlertCircle className="h-4 w-4" />
+                  Critical Issues ({errors.length})
+                </h4>
+                <ul className="space-y-2 pl-6">
+                  {errors.map((issue, index) => (
+                    <li key={index} className="text-sm">
+                      <p className="font-medium">{issue.message}</p>
+                      {issue.suggestion && (
+                        <p className="text-muted-foreground">{issue.suggestion}</p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {warnings.length > 0 && (
+              <div className="space-y-2">
+                <h4 className="flex items-center gap-2 text-sm font-semibold text-warning">
+                  <AlertTriangle className="h-4 w-4" />
+                  Warnings ({warnings.length})
+                </h4>
+                <ul className="space-y-3 pl-6">
+                  {warnings.map((issue, index) => (
+                    <li key={index} className="text-sm">
+                      <p className="font-medium">{issue.message}</p>
+                      {issue.suggestion && (
+                        <p className="text-muted-foreground">{issue.suggestion}</p>
+                      )}
+                      {issue.truncatedValue && (
+                        <TruncatedSuggestion text={issue.truncatedValue} />
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {infos.length > 0 && (
+              <div className="space-y-2">
+                <h4 className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+                  <Info className="h-4 w-4" />
+                  Suggestions ({infos.length})
+                </h4>
+                <ul className="space-y-3 pl-6">
+                  {infos.map((issue, index) => (
+                    <li key={index} className="text-sm">
+                      <p className="text-muted-foreground">{issue.message}</p>
+                      {issue.suggestion && (
+                        <p className="text-muted-foreground text-xs">{issue.suggestion}</p>
+                      )}
+                      {issue.truncatedValue && (
+                        <TruncatedSuggestion text={issue.truncatedValue} />
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {showCode && (
+              <div className="mt-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-sm font-semibold">Recommended Meta Tags</h4>
+                  <div className="flex gap-1">
+                    {FRAMEWORK_OPTIONS.map((opt) => (
+                      <Button
+                        key={opt.value}
+                        variant={codeFormat === opt.value ? "default" : "ghost"}
+                        size="sm"
+                        className="h-7 px-2 text-xs"
+                        onClick={() => setCodeFormat(opt.value)}
+                      >
+                        {opt.label}
+                        {opt.framework === meta.detectedFramework && (
+                          <span className="ml-1 text-[10px] opacity-60">•</span>
+                        )}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+                {meta.detectedFramework && codeFormat !== "html" && (
+                  <p className="text-xs text-muted-foreground">
+                    Detected framework: {FRAMEWORK_OPTIONS.find(o => o.framework === meta.detectedFramework)?.label || meta.detectedFramework}
+                  </p>
+                )}
+                <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+                  <code>{metaTagCode}</code>
+                </pre>
+              </div>
+            )}
+          </CardContent>
+        </Card>
       )}
+
+      <ClearCacheGuide />
     </div>
   );
 }

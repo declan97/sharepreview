@@ -1,25 +1,27 @@
 import type { Metadata } from "next";
-import { Outfit, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "ShareLint - Social Media Link Preview Checker",
-    template: "%s | ShareLint",
+    default: "SharePreview - Social Media Link Preview Checker",
+    template: "%s | SharePreview",
   },
   description:
     "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them. Check your link preview in 2 seconds.",
@@ -33,8 +35,8 @@ export const metadata: Metadata = {
     "open graph",
     "meta tags",
   ],
-  authors: [{ name: "ShareLint" }],
-  creator: "ShareLint",
+  authors: [{ name: "SharePreview" }],
+  creator: "SharePreview",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app"),
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
@@ -43,8 +45,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app",
-    siteName: "ShareLint",
-    title: "ShareLint - Social Media Link Preview Checker",
+    siteName: "SharePreview",
+    title: "SharePreview - Social Media Link Preview Checker",
     description:
       "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them.",
     images: [
@@ -52,13 +54,13 @@ export const metadata: Metadata = {
         url: "/api/og",
         width: 1200,
         height: 630,
-        alt: "ShareLint - Social Media Link Preview Checker",
+        alt: "SharePreview - Social Media Link Preview Checker",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ShareLint - Social Media Link Preview Checker",
+    title: "SharePreview - Social Media Link Preview Checker",
     description:
       "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them.",
     images: ["/api/og"],
@@ -78,11 +80,12 @@ export const metadata: Metadata = {
 
 const baseUrl = (process.env.NEXT_PUBLIC_APP_URL || "https://sharepreview.vercel.app").trim();
 
-const jsonLd = {
+// JSON-LD structured data - static content, safe for inline script
+const jsonLdString = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "ShareLint",
-  alternateName: "Share Lint",
+  name: "SharePreview",
+  alternateName: "Share Preview",
   description:
     "See exactly how your links look on Facebook, Twitter, LinkedIn, and Discord before you share them. Free social media link preview checker.",
   url: baseUrl,
@@ -112,7 +115,7 @@ const jsonLd = {
   screenshot: `${baseUrl}/api/og`,
   author: {
     "@type": "Organization",
-    name: "ShareLint",
+    name: "SharePreview",
     url: baseUrl,
   },
   aggregateRating: {
@@ -130,7 +133,7 @@ const jsonLd = {
     },
     "query-input": "required name=search_term_string",
   },
-};
+});
 
 export default function RootLayout({
   children,
@@ -140,13 +143,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* JSON-LD structured data - static trusted content */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdString }}
         />
       </head>
       <body
-        className={`${outfit.variable} ${jetbrainsMono.variable} min-h-screen bg-background font-sans antialiased`}
+        className={`${plusJakarta.variable} ${ibmPlexMono.variable} min-h-screen bg-background font-sans antialiased`}
       >
         <div className="relative flex min-h-screen flex-col">
           <Header />
